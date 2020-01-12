@@ -1,0 +1,31 @@
+function copia_graf(p1,p2,p3,pata,iteraciones,errormax,pasoo)
+grupo = 1:pasoo:errormax;   
+e1 = error_en_z_vs_porcentaje_ruido_theta_2_off(p1,p2,p3,pata,iteraciones,errormax,pasoo);
+box_1 = boxplot(e1,'colors','b','positions',grupo,'width',0.18);
+   set(gca,'XTickLabel',{' '})  % Erase xlabels   
+hold on  % Keep the Month_O boxplots on figure overlap the Month_S boxplots 
+   e2 = error_en_z_vs_porcentaje_ruido_theta_3_off(p1,p2,p3,pata,iteraciones,errormax,pasoo);
+grupo2 = 1.2:pasoo:(errormax+0.2);  % Define position for 12 Month_S boxplots  
+box_2 = boxplot(e2,'colors','r','positions',grupo2,'width',0.18);
+hold on
+   e3 = error_en_z_vs_porcentaje_ruido_a_1(p1,p2,p3,pata,iteraciones,errormax,pasoo);
+   grupo3 = 1.4:pasoo:(errormax+0.4);  % Define position for 12 Month_S boxplots  
+box_3 = boxplot(e3,'colors','f','positions',grupo3,'width',0.18);
+hold on
+   e4 = error_en_z_vs_porcentaje_ruido_a_2(p1,p2,p3,pata,iteraciones,errormax,pasoo);
+  grupo4 = 1.6:pasoo:(errormax+0.6);  % Define position for 12 Month_S boxplots  
+box_4 = boxplot(e4,'colors','f','positions',grupo4,'width',0.18);
+hold on
+   e5 = error_en_z_vs_porcentaje_ruido_a_3(p1,p2,p3,pata,iteraciones,errormax,pasoo);
+grupo5 = 1.8:pasoo:(errormax+0.8);  % Define position for 12 Month_S boxplots  
+box_5 = boxplot(e5,'colors','f','positions',grupo5,'width',0.18);
+hold on
+    
+ 
+ylim([0 300])
+xlim([0 errormax])
+    xlabel('Porcentaje de Ruido');% Set the X-axis label
+    ylabel('Error en la posicion');
+   legend('theta_2_off','theta_3_off','a_1','a_2','a_3');
+    grid on
+end

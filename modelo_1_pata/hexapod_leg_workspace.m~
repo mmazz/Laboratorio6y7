@@ -1,0 +1,63 @@
+
+%WORKSPACE OF THE HEXAPOD
+
+%Generamos todos los posibles valores angulares (theta_i) de cada
+%articulacion
+PASO = 1;
+Theta1_Coxis = (-60:PASO:60)*pi/180;
+Theta2_Femur = (-45:PASO:90)*pi/180;
+Theta3_Tibia = (0:PASO:135)*pi/180;
+
+
+[theta1_Coxis, theta2_Femur, theta3_Tibia] = ndgrid(Theta1_Coxis, Theta2_Femur, Theta3_Tibia); % generate a grid of theta2, theta3 and theta4 values
+
+pata=6;
+p1.theta = theta1_Coxis; p2.theta = theta2_Femur; p3.theta = theta3_Tibia;
+p1.theta_off = 0; p2.theta_off = -0.22; p3.theta_off = -0.81;
+p1.a= 52; p2.a = 66; p3.a = 138;
+p1.alpha = pi/2; p2.alpha = 0; p3.alpha = 0;
+p1.d = 0; p2.d = 0; p3.d = 0;
+
+%calculamos los posibles valores de x,y,z:
+
+pose = forward_kinematics(p1,p2,p3,pata);
+
+
+plot(pose(:,1), pose(:,3), 'r.');
+grid;
+
+axis equal;
+  xlabel('X')
+  ylabel('Z')
+  %zlabel('Z')
+  title('X-Z co-ordinates generated from theta1, theta2 and theta3 combinations using F.K.')
+ h = rotate3d;
+ set(h,'RotateStyle','box','Enable','on');
+ axis([-70 70 0  100]);
+ 
+
+ 
+ 
+pata=6;
+p1.theta_off = 0; p2.theta_off = -0.22; p3.theta_off = -0.81;
+p1.a= 52; p2.a = 66; p3.a = 138;
+p1.alpha = pi/2; p2.alpha = 0; p3.alpha = 0;
+p1.d = 0; p2.d = 0; p3.d = 0;
+ 
+num=1;
+
+for th1=(-60:1:60)*pi/180
+    for th2= (-45:1:90)*pi/180
+        for th3=(-180:1:180)*pi/180
+                        p1.theta=th1; p2.theta=th2; p3.theta=th3;
+                        pose = forward_kinematics(p1,p2,p3,pata);
+                        x(num)=pose(1);
+                        y(num)=pose(2);
+                        z(num)=pose(3);
+                        num=num+1;
+                        plot(x,z,'r*');hold on;
+        end
+    end
+end
+
+ 

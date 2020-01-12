@@ -1,0 +1,731 @@
+Model {
+  Name			  "sintonizar3d6"
+  Version		  2.09
+  SimParamPage		  Solver
+  SampleTimeColors	  off
+  InvariantConstants	  off
+  WideVectorLines	  off
+  ShowLineWidths	  off
+  PaperOrientation	  landscape
+  PaperType		  usletter
+  PaperUnits		  inches
+  StartTime		  "0.0"
+  StopTime		  "0.5"
+  Solver		  ode45
+  RelTol		  "1e-3"
+  AbsTol		  "1e-3"
+  Refine		  "1"
+  MaxStep		  "0.1"
+  InitialStep		  "auto"
+  FixedStep		  "auto"
+  MaxOrder		  5
+  OutputOption		  RefineOutputTimes
+  OutputTimes		  "[]"
+  LoadExternalInput	  off
+  ExternalInput		  "[t, u]"
+  SaveTime		  off
+  TimeSaveName		  "tout"
+  SaveState		  off
+  StateSaveName		  "xout"
+  SaveOutput		  off
+  OutputSaveName	  "yout"
+  LoadInitialState	  off
+  InitialState		  "xInitial"
+  SaveFinalState	  off
+  FinalStateName	  "xFinal"
+  LimitMaxRows		  off
+  MaxRows		  "1000"
+  Decimation		  "1"
+  AlgebraicLoopMsg	  warning
+  MinStepSizeMsg	  warning
+  UnconnectedInputMsg	  warning
+  UnconnectedOutputMsg	  warning
+  UnconnectedLineMsg	  warning
+  ConsistencyChecking	  off
+  ZeroCross		  on
+  SimulationMode	  normal
+  RTWSystemTargetFile	  "grt.tlc"
+  RTWInlineParameters	  off
+  RTWRetainRTWFile	  off
+  RTWTemplateMakefile	  "grt_vc.tmf"
+  RTWMakeCommand	  "make_rtw"
+  RTWGenerateCodeOnly	  off
+  ExtModeMexFile	  "ext_comm"
+  ExtModeBatchMode	  off
+  BlockDefaults {
+    Orientation		    right
+    ForegroundColor	    black
+    BackgroundColor	    white
+    DropShadow		    off
+    NamePlacement	    normal
+    FontName		    "Helvetica"
+    FontSize		    10
+    FontWeight		    normal
+    FontAngle		    normal
+    ShowName		    on
+  }
+  AnnotationDefaults {
+    HorizontalAlignment	    center
+    VerticalAlignment	    middle
+    ForegroundColor	    black
+    BackgroundColor	    white
+    DropShadow		    off
+    FontName		    "Helvetica"
+    FontSize		    10
+    FontWeight		    normal
+    FontAngle		    normal
+  }
+  LineDefaults {
+    FontName		    "Helvetica"
+    FontSize		    9
+    FontWeight		    normal
+    FontAngle		    normal
+  }
+  System {
+    Name		    "sintonizar3d6"
+    Location		    [26, 24, 999, 663]
+    Open		    on
+    ScreenColor		    white
+    Block {
+      BlockType		      Gain
+      Name		      "Amplificador"
+      Position		      [370, 155, 400, 185]
+      Gain		      "25"
+    }
+    Block {
+      BlockType		      Scope
+      Name		      "Gráfica Respuesta"
+      Ports		      [1, 0, 0, 0, 0]
+      Position		      [395, 485, 425, 515]
+      BackgroundColor	      green
+      Floating		      off
+      Location		      [116, 131, 668, 491]
+      Open		      off
+      Grid		      on
+      TickLabels	      on
+      ZoomMode		      on
+      TimeRange		      "auto"
+      YMin		      "1.49            "
+      YMax		      "1.575           "
+      SaveToWorkspace	      off
+      SaveName		      "ScopeData"
+      LimitMaxRows	      off
+      MaxRows		      "500"
+      Decimation	      "1"
+      SampleInput	      off
+      SampleTime	      "0"
+    }
+    Block {
+      BlockType		      Integrator
+      Name		      "Integrador\nAceleración"
+      Ports		      [1, 1, 0, 0, 0]
+      Position		      [895, 220, 915, 240]
+      ExternalReset	      none
+      InitialConditionSource      internal
+      InitialCondition	      "0"
+      LimitOutput	      off
+      UpperSaturationLimit      "inf"
+      LowerSaturationLimit      "-inf"
+      ShowSaturationPort      off
+      ShowStatePort	      off
+      AbsoluteTolerance	      "auto"
+    }
+    Block {
+      BlockType		      Integrator
+      Name		      "Integrador\nVelocidad"
+      Ports		      [1, 1, 0, 0, 0]
+      Position		      [755, 425, 775, 445]
+      Orientation	      left
+      BackgroundColor	      yellow
+      ExternalReset	      none
+      InitialConditionSource      internal
+      InitialCondition	      "pi/2"
+      LimitOutput	      off
+      UpperSaturationLimit      "inf"
+      LowerSaturationLimit      "-inf"
+      ShowSaturationPort      off
+      ShowStatePort	      off
+      AbsoluteTolerance	      "auto"
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Motor\nArticulación 3"
+      Ports		      [2, 1, 0, 0, 0]
+      Position		      [445, 162, 490, 193]
+      BackgroundColor	      yellow
+      ShowPortLabels	      on
+      MaskType		      "Motor"
+      MaskPromptString	      "Resistencia (Ohmios)|Inductancia (Henrios)|Kt "
+			      "(Nm/A)|Kv (V/rad/s)|Corriente máxima (Amperios)|"
+			      "Reductor"
+      MaskStyleString	      "edit,edit,edit,edit,edit,edit"
+      MaskVariables	      "R=@1;L=@2;Kt=@3;Kv=@4;imax=@5;red=@6;"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      none
+      MaskIconUnits	      autoscale
+      MaskValueString	      "0.8|0.00093|0.058|0.058|18.5|500"
+      System {
+	Name			"Motor\nArticulación 3"
+	Location		[134, 311, 783, 584]
+	Open			off
+	ScreenColor		white
+	Block {
+	  BlockType		  Inport
+	  Name			  "Volt"
+	  Position		  [25, 68, 55, 82]
+	  Port			  "1"
+	  PortWidth		  "-1"
+	  SampleTime		  "-1"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "Vel"
+	  Position		  [20, 123, 50, 137]
+	  Port			  "2"
+	  PortWidth		  "-1"
+	  SampleTime		  "-1"
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "Kt"
+	  Position		  [440, 64, 480, 96]
+	  Gain			  "Kt"
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "Kv"
+	  Position		  [135, 112, 190, 148]
+	  Gain			  "Kv"
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "Reductor"
+	  Position		  [75, 109, 115, 151]
+	  Gain			  "red"
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "Reductor1"
+	  Position		  [510, 63, 540, 97]
+	  Gain			  "red"
+	}
+	Block {
+	  BlockType		  Saturate
+	  Name			  "Saturation"
+	  Position		  [375, 65, 405, 95]
+	  UpperLimit		  "imax"
+	  LowerLimit		  "-imax"
+	}
+	Block {
+	  BlockType		  Sum
+	  Name			  "Sum1"
+	  Ports			  [2, 1, 0, 0, 0]
+	  Position		  [220, 69, 240, 91]
+	  Inputs		  "+-"
+	}
+	Block {
+	  BlockType		  TransferFcn
+	  Name			  "motor"
+	  Position		  [275, 61, 335, 99]
+	  Numerator		  "[1]"
+	  Denominator		  "[L R]"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Par"
+	  Position		  [570, 73, 600, 87]
+	  Port			  "1"
+	  OutputWhenDisabled	  held
+	  InitialOutput		  "0"
+	}
+	Line {
+	  Labels		  [0, 0]
+	  SrcBlock		  "Vel"
+	  SrcPort		  1
+	  DstBlock		  "Reductor"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Volt"
+	  SrcPort		  1
+	  DstBlock		  "Sum1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Kv"
+	  SrcPort		  1
+	  Points		  [0, -45]
+	  DstBlock		  "Sum1"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Reductor"
+	  SrcPort		  1
+	  DstBlock		  "Kv"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Sum1"
+	  SrcPort		  1
+	  DstBlock		  "motor"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Reductor1"
+	  SrcPort		  1
+	  DstBlock		  "Par"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Kt"
+	  SrcPort		  1
+	  DstBlock		  "Reductor1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "motor"
+	  SrcPort		  1
+	  DstBlock		  "Saturation"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Saturation"
+	  SrcPort		  1
+	  DstBlock		  "Kt"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      Mux
+      Name		      "Mux"
+      Ports		      [3, 1, 0, 0, 0]
+      Position		      [680, 214, 710, 246]
+      Inputs		      "3"
+    }
+    Block {
+      BlockType		      Selector
+      Name		      "Ordena\nPares"
+      Position		      [590, 206, 635, 234]
+      BackgroundColor	      yellow
+      Elements		      "[2 3 1 4 5 6]"
+      InputPortWidth	      "6"
+    }
+    Block {
+      BlockType		      Selector
+      Name		      "Ordena\nPosiciones"
+      Position		      [595, 286, 640, 314]
+      BackgroundColor	      yellow
+      Elements		      "[2 3 1 4 5 6]"
+      InputPortWidth	      "6"
+    }
+    Block {
+      BlockType		      Selector
+      Name		      "Ordena\nVelocidades"
+      Position		      [595, 361, 640, 389]
+      BackgroundColor	      yellow
+      Elements		      "[2 3 1 4 5 6]"
+      InputPortWidth	      "6"
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "PID"
+      Ports		      [1, 1, 0, 0, 0]
+      Position		      [245, 158, 280, 182]
+      BackgroundColor	      lightBlue
+      ShowPortLabels	      off
+      MaskType		      "PID Controller"
+      MaskDescription	      "Enter expressions for proportional, integral, "
+			      "and derivative terms.\nP+I/s+Ds"
+      MaskHelp		      "This block implements a PID controller where "
+			      "parameters are entered for the Proportional, "
+			      "Integral and Derivative terms. Unmask this "
+			      "block to see how it works. The derivative "
+			      "term is implemented using a true derivative "
+			      "block."
+      MaskPromptString	      "Proportional:|Integral|Derivative:"
+      MaskStyleString	      "edit,edit,edit"
+      MaskVariables	      "P=@1;I=@2;D=@3;"
+      MaskDisplay	      "disp('PID')"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      none
+      MaskIconUnits	      autoscale
+      MaskValueString	      "200|0|0"
+      System {
+	Name			"PID"
+	Location		[0, 0, 362, 244]
+	Open			off
+	ScreenColor		white
+	Block {
+	  BlockType		  Inport
+	  Name			  "In_1"
+	  Position		  [25, 65, 45, 85]
+	  Port			  "1"
+	  PortWidth		  "-1"
+	  SampleTime		  "-1"
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "D"
+	  Position		  [95, 129, 115, 151]
+	  Gain			  "D"
+	}
+	Block {
+	  BlockType		  Derivative
+	  Name			  "Derivative"
+	  Position		  [150, 128, 190, 152]
+	}
+	Block {
+	  BlockType		  TransferFcn
+	  Name			  "Integral"
+	  Position		  [110, 57, 145, 93]
+	  Numerator		  "[I]"
+	  Denominator		  "[1 0]"
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "Proportional"
+	  Position		  [120, 13, 140, 37]
+	  Gain			  "P"
+	}
+	Block {
+	  BlockType		  Sum
+	  Name			  "Sum"
+	  Ports			  [3, 1, 0, 0, 0]
+	  Position		  [245, 57, 265, 93]
+	  Inputs		  "+++"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out_1"
+	  Position		  [290, 65, 310, 85]
+	  Port			  "1"
+	  OutputWhenDisabled	  held
+	  InitialOutput		  "0"
+	}
+	Line {
+	  SrcBlock		  "D"
+	  SrcPort		  1
+	  DstBlock		  "Derivative"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Sum"
+	  SrcPort		  1
+	  DstBlock		  "Out_1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "In_1"
+	  SrcPort		  1
+	  Points		  [15, 0]
+	  Branch {
+	    Points		    [0, 65]
+	    DstBlock		    "D"
+	    DstPort		    1
+	  }
+	  Branch {
+	    Points		    [15, 0]
+	    Branch {
+	      DstBlock		      "Integral"
+	      DstPort		      1
+	    }
+	    Branch {
+	      Points		      [0, -50]
+	      DstBlock		      "Proportional"
+	      DstPort		      1
+	    }
+	  }
+	}
+	Line {
+	  SrcBlock		  "Derivative"
+	  SrcPort		  1
+	  Points		  [20, 0; 0, -55]
+	  DstBlock		  "Sum"
+	  DstPort		  3
+	}
+	Line {
+	  SrcBlock		  "Integral"
+	  SrcPort		  1
+	  DstBlock		  "Sum"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Proportional"
+	  SrcPort		  1
+	  Points		  [65, 0; 0, 40]
+	  DstBlock		  "Sum"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      Constant
+      Name		      "Par Motor\nResto Articulaciones"
+      Position		      [20, 219, 100, 241]
+      Value		      "[0 0 0 0 0]"
+    }
+    Block {
+      BlockType		      Mux
+      Name		      "Pares"
+      Ports		      [2, 1, 0, 0, 0]
+      Position		      [525, 199, 560, 241]
+      Inputs		      "2"
+    }
+    Block {
+      BlockType		      Mux
+      Name		      "Posiciones"
+      Ports		      [2, 1, 0, 0, 0]
+      Position		      [525, 274, 565, 321]
+      Inputs		      "2"
+    }
+    Block {
+      BlockType		      Step
+      Name		      "Posición\nArticulación 3"
+      Position		      [55, 150, 85, 180]
+      BackgroundColor	      yellow
+      Time		      "0"
+      Before		      "pi/2"
+      After		      "pi/2-0.08"
+    }
+    Block {
+      BlockType		      Constant
+      Name		      "Posición\nResto Articulaciones"
+      Position		      [20, 299, 100, 321]
+      Value		      "[0 0 0 0 0]"
+    }
+    Block {
+      BlockType		      Mux
+      Name		      "Posición \nReal vs Planificada"
+      Ports		      [2, 1, 0, 0, 0]
+      Position		      [280, 474, 320, 521]
+      Inputs		      "2"
+    }
+    Block {
+      BlockType		      MATLABFcn
+      Name		      "Robot  6 GDL"
+      Position		      [740, 213, 800, 247]
+      MATLABFcn		      "dindir6gdl"
+      OutputWidth	      "6"
+    }
+    Block {
+      BlockType		      Saturate
+      Name		      "Saturation"
+      Position		      [310, 155, 340, 185]
+      UpperLimit	      "10"
+      LowerLimit	      "-10"
+    }
+    Block {
+      BlockType		      Selector
+      Name		      "Selector"
+      Position		      [825, 216, 870, 244]
+      BackgroundColor	      yellow
+      Elements		      "3"
+      InputPortWidth	      "6"
+    }
+    Block {
+      BlockType		      Sum
+      Name		      "Sum"
+      Ports		      [2, 1, 0, 0, 0]
+      Position		      [200, 159, 220, 181]
+      Inputs		      "+-"
+    }
+    Block {
+      BlockType		      Constant
+      Name		      "Velocidad\nResto Articulaciones"
+      Position		      [30, 374, 100, 396]
+      Value		      "[0 0 0 0 0]"
+    }
+    Block {
+      BlockType		      Mux
+      Name		      "Velocidades"
+      Ports		      [2, 1, 0, 0, 0]
+      Position		      [525, 349, 565, 396]
+      Inputs		      "2"
+    }
+    Line {
+      SrcBlock		      "Par Motor\nResto Articulaciones"
+      SrcPort		      1
+      DstBlock		      "Pares"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "Saturation"
+      SrcPort		      1
+      DstBlock		      "Amplificador"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "PID"
+      SrcPort		      1
+      DstBlock		      "Saturation"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Sum"
+      SrcPort		      1
+      DstBlock		      "PID"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Mux"
+      SrcPort		      1
+      DstBlock		      "Robot  6 GDL"
+      DstPort		      1
+    }
+    Line {
+      Labels		      [1, 0]
+      SrcBlock		      "Amplificador"
+      SrcPort		      1
+      DstBlock		      "Motor\nArticulación 3"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Motor\nArticulación 3"
+      SrcPort		      1
+      Points		      [10, 0; 0, 30]
+      DstBlock		      "Pares"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Posición\nResto Articulaciones"
+      SrcPort		      1
+      DstBlock		      "Posiciones"
+      DstPort		      2
+    }
+    Line {
+      Labels		      [0, 0]
+      SrcBlock		      "Integrador\nVelocidad"
+      SrcPort		      1
+      Points		      [-400, 0]
+      Branch {
+	Points			[0, -150]
+	DstBlock		"Posiciones"
+	DstPort			1
+      }
+      Branch {
+	Points			[-130, 0]
+	Branch {
+	  Points		  [-45, 0; 0, -260]
+	  DstBlock		  "Sum"
+	  DstPort		  2
+	}
+	Branch {
+	  Points		  [0, 50]
+	  DstBlock		  "Posición \nReal vs Planificada"
+	  DstPort		  1
+	}
+      }
+    }
+    Line {
+      SrcBlock		      "Velocidad\nResto Articulaciones"
+      SrcPort		      1
+      DstBlock		      "Velocidades"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "Posición\nArticulación 3"
+      SrcPort		      1
+      Points		      [60, 0]
+      Branch {
+	DstBlock		"Sum"
+	DstPort			1
+      }
+      Branch {
+	Points			[0, 345]
+	DstBlock		"Posición \nReal vs Planificada"
+	DstPort			2
+      }
+    }
+    Line {
+      SrcBlock		      "Robot  6 GDL"
+      SrcPort		      1
+      DstBlock		      "Selector"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Posición \nReal vs Planificada"
+      SrcPort		      1
+      DstBlock		      "Gráfica Respuesta"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Selector"
+      SrcPort		      1
+      DstBlock		      "Integrador\nAceleración"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Integrador\nAceleración"
+      SrcPort		      1
+      Points		      [25, 0; 0, 105]
+      Branch {
+	Points			[0, 100]
+	DstBlock		"Integrador\nVelocidad"
+	DstPort			1
+      }
+      Branch {
+	Points			[0, 80; -520, 0; 0, -55]
+	Branch {
+	  Points		  [0, -175]
+	  DstBlock		  "Motor\nArticulación 3"
+	  DstPort		  2
+	}
+	Branch {
+	  DstBlock		  "Velocidades"
+	  DstPort		  1
+	}
+      }
+    }
+    Line {
+      SrcBlock		      "Pares"
+      SrcPort		      1
+      DstBlock		      "Ordena\nPares"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Ordena\nPares"
+      SrcPort		      1
+      DstBlock		      "Mux"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Posiciones"
+      SrcPort		      1
+      DstBlock		      "Ordena\nPosiciones"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Ordena\nPosiciones"
+      SrcPort		      1
+      Points		      [5, 0; 0, -70]
+      DstBlock		      "Mux"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "Velocidades"
+      SrcPort		      1
+      DstBlock		      "Ordena\nVelocidades"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Ordena\nVelocidades"
+      SrcPort		      1
+      Points		      [20, 0]
+      DstBlock		      "Mux"
+      DstPort		      3
+    }
+    Annotation {
+      Position		      [455, 49]
+      ForegroundColor	      blue
+      FontName		      "Arial"
+      FontSize		      16
+      FontWeight	      bold
+      Text		      "SINTONIZACIÓN MOTOR ARTICULACIÓN 3\nCONTROL "
+			      "DESACOPLADO"
+      DropShadow	      on
+    }
+  }
+}

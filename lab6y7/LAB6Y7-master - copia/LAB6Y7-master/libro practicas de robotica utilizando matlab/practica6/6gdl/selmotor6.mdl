@@ -1,0 +1,1412 @@
+Model {
+  Name			  "selmotor6"
+  Version		  2.09
+  SimParamPage		  Solver
+  SampleTimeColors	  off
+  InvariantConstants	  off
+  WideVectorLines	  off
+  ShowLineWidths	  off
+  PaperOrientation	  landscape
+  PaperType		  usletter
+  PaperUnits		  inches
+  StartTime		  "0.0"
+  StopTime		  "1"
+  Solver		  VariableStepDiscrete
+  RelTol		  "1e-3"
+  AbsTol		  "1e-6"
+  Refine		  "1"
+  MaxStep		  "0.01"
+  InitialStep		  "auto"
+  FixedStep		  "0.1"
+  MaxOrder		  5
+  OutputOption		  RefineOutputTimes
+  OutputTimes		  "[1]"
+  LoadExternalInput	  off
+  ExternalInput		  "[t, u]"
+  SaveTime		  off
+  TimeSaveName		  "tout"
+  SaveState		  off
+  StateSaveName		  "xout"
+  SaveOutput		  off
+  OutputSaveName	  "yout"
+  LoadInitialState	  off
+  InitialState		  "xInitial"
+  SaveFinalState	  off
+  FinalStateName	  "xFinal"
+  LimitMaxRows		  off
+  MaxRows		  "1000"
+  Decimation		  "1"
+  AlgebraicLoopMsg	  warning
+  MinStepSizeMsg	  warning
+  UnconnectedInputMsg	  warning
+  UnconnectedOutputMsg	  warning
+  UnconnectedLineMsg	  warning
+  ConsistencyChecking	  off
+  ZeroCross		  on
+  SimulationMode	  normal
+  RTWSystemTargetFile	  "grt.tlc"
+  RTWInlineParameters	  off
+  RTWRetainRTWFile	  off
+  RTWTemplateMakefile	  "grt_vc.tmf"
+  RTWMakeCommand	  "make_rtw"
+  RTWGenerateCodeOnly	  off
+  ExtModeMexFile	  "ext_comm"
+  ExtModeBatchMode	  off
+  BlockDefaults {
+    Orientation		    right
+    ForegroundColor	    black
+    BackgroundColor	    white
+    DropShadow		    off
+    NamePlacement	    normal
+    FontName		    "Helvetica"
+    FontSize		    10
+    FontWeight		    normal
+    FontAngle		    normal
+    ShowName		    on
+  }
+  AnnotationDefaults {
+    HorizontalAlignment	    center
+    VerticalAlignment	    middle
+    ForegroundColor	    black
+    BackgroundColor	    white
+    DropShadow		    off
+    FontName		    "Helvetica"
+    FontSize		    10
+    FontWeight		    normal
+    FontAngle		    normal
+  }
+  LineDefaults {
+    FontName		    "Helvetica"
+    FontSize		    9
+    FontWeight		    normal
+    FontAngle		    normal
+  }
+  System {
+    Name		    "selmotor6"
+    Location		    [93, 48, 980, 721]
+    Open		    on
+    ScreenColor		    white
+    Block {
+      BlockType		      Demux
+      Name		      "Demux"
+      Ports		      [1, 6, 0, 0, 0]
+      Position		      [470, 294, 525, 366]
+      Outputs		      "6"
+    }
+    Block {
+      BlockType		      MATLABFcn
+      Name		      "Dinámica Inversa"
+      Position		      [385, 315, 445, 345]
+      MATLABFcn		      "dininv6gdl"
+      OutputWidth	      "6"
+    }
+    Block {
+      BlockType		      Mux
+      Name		      "Mux"
+      Ports		      [13, 1, 0, 0, 0]
+      Position		      [295, 239, 355, 421]
+      Inputs		      "13"
+    }
+    Block {
+      BlockType		      Scope
+      Name		      "Par Articulación 1"
+      Ports		      [1, 0, 0, 0, 0]
+      Position		      [665, 105, 695, 135]
+      BackgroundColor	      green
+      Floating		      off
+      Location		      [151, 63, 807, 665]
+      Open		      off
+      Grid		      on
+      TickLabels	      on
+      ZoomMode		      on
+      TimeRange		      "auto"
+      YMin		      "-0.075          "
+      YMax		      "0.005           "
+      SaveToWorkspace	      off
+      SaveName		      "ScopeData"
+      LimitMaxRows	      off
+      MaxRows		      "5000"
+      Decimation	      "1"
+      SampleInput	      off
+      SampleTime	      "0"
+    }
+    Block {
+      BlockType		      Scope
+      Name		      "Par Articulación 2"
+      Ports		      [1, 0, 0, 0, 0]
+      Position		      [665, 175, 695, 205]
+      BackgroundColor	      green
+      Floating		      off
+      Location		      [235, 127, 715, 574]
+      Open		      off
+      Grid		      on
+      TickLabels	      on
+      ZoomMode		      on
+      TimeRange		      "auto"
+      YMin		      "-5"
+      YMax		      "5"
+      SaveToWorkspace	      off
+      SaveName		      "ScopeData"
+      LimitMaxRows	      off
+      MaxRows		      "5000"
+      Decimation	      "1"
+      SampleInput	      off
+      SampleTime	      "0"
+    }
+    Block {
+      BlockType		      Scope
+      Name		      "Par Articulación 3"
+      Ports		      [1, 0, 0, 0, 0]
+      Position		      [670, 255, 700, 285]
+      BackgroundColor	      green
+      Floating		      off
+      Location		      [75, 89, 702, 607]
+      Open		      off
+      Grid		      on
+      TickLabels	      on
+      ZoomMode		      on
+      TimeRange		      "auto"
+      YMin		      "-5"
+      YMax		      "5"
+      SaveToWorkspace	      off
+      SaveName		      "ScopeData"
+      LimitMaxRows	      off
+      MaxRows		      "5000"
+      Decimation	      "1"
+      SampleInput	      off
+      SampleTime	      "0"
+    }
+    Block {
+      BlockType		      Scope
+      Name		      "Par Articulación 4"
+      Ports		      [1, 0, 0, 0, 0]
+      Position		      [670, 330, 700, 360]
+      BackgroundColor	      green
+      Floating		      off
+      Location		      [187, 85, 814, 603]
+      Open		      off
+      Grid		      on
+      TickLabels	      on
+      ZoomMode		      on
+      TimeRange		      "auto"
+      YMin		      "-5"
+      YMax		      "5"
+      SaveToWorkspace	      off
+      SaveName		      "ScopeData"
+      LimitMaxRows	      off
+      MaxRows		      "5000"
+      Decimation	      "1"
+      SampleInput	      off
+      SampleTime	      "0"
+    }
+    Block {
+      BlockType		      Scope
+      Name		      "Par Articulación 5"
+      Ports		      [1, 0, 0, 0, 0]
+      Position		      [670, 405, 700, 435]
+      BackgroundColor	      green
+      Floating		      off
+      Location		      [75, 76, 702, 594]
+      Open		      off
+      Grid		      on
+      TickLabels	      on
+      ZoomMode		      on
+      TimeRange		      "auto"
+      YMin		      "-5"
+      YMax		      "5"
+      SaveToWorkspace	      off
+      SaveName		      "ScopeData"
+      LimitMaxRows	      off
+      MaxRows		      "5000"
+      Decimation	      "1"
+      SampleInput	      off
+      SampleTime	      "0"
+    }
+    Block {
+      BlockType		      Scope
+      Name		      "Par Articulación 6"
+      Ports		      [1, 0, 0, 0, 0]
+      Position		      [670, 480, 700, 510]
+      BackgroundColor	      green
+      Floating		      off
+      Location		      [75, 76, 702, 594]
+      Open		      off
+      Grid		      on
+      TickLabels	      on
+      ZoomMode		      on
+      TimeRange		      "auto"
+      YMin		      "-5"
+      YMax		      "5"
+      SaveToWorkspace	      off
+      SaveName		      "ScopeData"
+      LimitMaxRows	      off
+      MaxRows		      "5000"
+      Decimation	      "1"
+      SampleInput	      off
+      SampleTime	      "0"
+    }
+    Block {
+      BlockType		      Constant
+      Name		      "Peor Posición Robot"
+      Position		      [75, 97, 160, 123]
+      Value		      "[0 0 pi/2 0 0 0]"
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Perfil Trapezoidal de \nVelocidad Articulación 1"
+      Ports		      [0, 2, 0, 0, 0]
+      Position		      [90, 163, 150, 207]
+      BackgroundColor	      yellow
+      ShowPortLabels	      on
+      MaskType		      "Perfil Trapezoidal de Velocidad"
+      MaskPromptString	      "Velocidad máxima|Tiempo aceleración|Tiempo "
+			      "constante|Tiempo deceleración"
+      MaskStyleString	      "edit,edit,edit,edit"
+      MaskVariables	      "velmax=@1;tacel=@2;tconst=@3;tdecel=@4;"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      none
+      MaskIconUnits	      autoscale
+      MaskValueString	      "pi/3|0.1|0.4|0.1"
+      System {
+	Name			"Perfil Trapezoidal de \nVelocidad Articulación"
+				" 1"
+	Location		[285, 185, 818, 530]
+	Open			off
+	ScreenColor		white
+	Block {
+	  BlockType		  Clock
+	  Name			  "Clock"
+	  Position		  [30, 25, 50, 45]
+	  Location		  [12, 31, 119, 76]
+	}
+	Block {
+	  BlockType		  Demux
+	  Name			  "Demux"
+	  Ports			  [1, 2, 0, 0, 0]
+	  Position		  [365, 117, 400, 153]
+	  Outputs		  "2"
+	}
+	Block {
+	  BlockType		  Mux
+	  Name			  "Mux"
+	  Ports			  [5, 1, 0, 0, 0]
+	  Position		  [180, 98, 225, 172]
+	  Inputs		  "5"
+	}
+	Block {
+	  BlockType		  MATLABFcn
+	  Name			  "Perfil Trapezoidal"
+	  Position		  [265, 120, 325, 150]
+	  MATLABFcn		  "trapezoidal"
+	  OutputWidth		  "2"
+	}
+	Block {
+	  BlockType		  Constant
+	  Name			  "Vel máxima"
+	  Position		  [25, 78, 65, 102]
+	  Value			  "velmax"
+	}
+	Block {
+	  BlockType		  Constant
+	  Name			  "t aceleración"
+	  Position		  [25, 133, 55, 157]
+	  Value			  "tacel"
+	}
+	Block {
+	  BlockType		  Constant
+	  Name			  "t constante"
+	  Position		  [25, 190, 65, 220]
+	  Value			  "tconst"
+	}
+	Block {
+	  BlockType		  Constant
+	  Name			  "t decel"
+	  Position		  [25, 247, 60, 273]
+	  Value			  "tdecel"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Velocidad"
+	  Position		  [475, 90, 495, 110]
+	  Port			  "1"
+	  OutputWhenDisabled	  held
+	  InitialOutput		  "0"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Aceleración"
+	  Position		  [475, 160, 495, 180]
+	  Port			  "2"
+	  OutputWhenDisabled	  held
+	  InitialOutput		  "0"
+	}
+	Line {
+	  SrcBlock		  "Perfil Trapezoidal"
+	  SrcPort		  1
+	  DstBlock		  "Demux"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Demux"
+	  SrcPort		  2
+	  Points		  [25, 0; 0, 25]
+	  DstBlock		  "Aceleración"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Demux"
+	  SrcPort		  1
+	  Points		  [25, 0; 0, -25]
+	  DstBlock		  "Velocidad"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Clock"
+	  SrcPort		  1
+	  Points		  [110, 0]
+	  DstBlock		  "Mux"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Vel máxima"
+	  SrcPort		  1
+	  Points		  [25, 0; 0, 30]
+	  DstBlock		  "Mux"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "t aceleración"
+	  SrcPort		  1
+	  Points		  [35, 0; 0, -10]
+	  DstBlock		  "Mux"
+	  DstPort		  3
+	}
+	Line {
+	  SrcBlock		  "t constante"
+	  SrcPort		  1
+	  Points		  [35, 0; 0, -55]
+	  DstBlock		  "Mux"
+	  DstPort		  4
+	}
+	Line {
+	  SrcBlock		  "t decel"
+	  SrcPort		  1
+	  Points		  [60, 0; 0, -95]
+	  DstBlock		  "Mux"
+	  DstPort		  5
+	}
+	Line {
+	  SrcBlock		  "Mux"
+	  SrcPort		  1
+	  DstBlock		  "Perfil Trapezoidal"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Perfil Trapezoidal de \nVelocidad Articulación 2"
+      Ports		      [0, 2, 0, 0, 0]
+      Position		      [90, 250, 150, 290]
+      BackgroundColor	      yellow
+      ShowPortLabels	      on
+      MaskType		      "Perfil Trapezoidal de Velocidad"
+      MaskPromptString	      "Velocidad máxima|Tiempo aceleración|Tiempo "
+			      "constante|Tiempo deceleración"
+      MaskStyleString	      "edit,edit,edit,edit"
+      MaskVariables	      "velmax=@1;tacel=@2;tconst=@3;tdecel=@4;"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      none
+      MaskIconUnits	      autoscale
+      MaskValueString	      "-pi/3|0.1|0.4|0.1"
+      System {
+	Name			"Perfil Trapezoidal de \nVelocidad Articulación"
+				" 2"
+	Location		[61, 175, 594, 520]
+	Open			off
+	ScreenColor		white
+	Block {
+	  BlockType		  Clock
+	  Name			  "Clock"
+	  Position		  [30, 25, 50, 45]
+	  Location		  [12, 31, 119, 76]
+	}
+	Block {
+	  BlockType		  Demux
+	  Name			  "Demux"
+	  Ports			  [1, 2, 0, 0, 0]
+	  Position		  [365, 117, 400, 153]
+	  Outputs		  "2"
+	}
+	Block {
+	  BlockType		  Mux
+	  Name			  "Mux"
+	  Ports			  [5, 1, 0, 0, 0]
+	  Position		  [180, 98, 225, 172]
+	  Inputs		  "5"
+	}
+	Block {
+	  BlockType		  MATLABFcn
+	  Name			  "Perfil Trapezoidal"
+	  Position		  [265, 120, 325, 150]
+	  MATLABFcn		  "trapezoidal"
+	  OutputWidth		  "2"
+	}
+	Block {
+	  BlockType		  Constant
+	  Name			  "Vel máxima"
+	  Position		  [25, 78, 65, 102]
+	  Value			  "velmax"
+	}
+	Block {
+	  BlockType		  Constant
+	  Name			  "t aceleración"
+	  Position		  [25, 133, 55, 157]
+	  Value			  "tacel"
+	}
+	Block {
+	  BlockType		  Constant
+	  Name			  "t constante"
+	  Position		  [25, 190, 65, 220]
+	  Value			  "tconst"
+	}
+	Block {
+	  BlockType		  Constant
+	  Name			  "t decel"
+	  Position		  [25, 247, 60, 273]
+	  Value			  "tdecel"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Velocidad"
+	  Position		  [475, 90, 495, 110]
+	  Port			  "1"
+	  OutputWhenDisabled	  held
+	  InitialOutput		  "0"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Aceleración"
+	  Position		  [475, 160, 495, 180]
+	  Port			  "2"
+	  OutputWhenDisabled	  held
+	  InitialOutput		  "0"
+	}
+	Line {
+	  SrcBlock		  "Mux"
+	  SrcPort		  1
+	  DstBlock		  "Perfil Trapezoidal"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "t decel"
+	  SrcPort		  1
+	  Points		  [60, 0; 0, -95]
+	  DstBlock		  "Mux"
+	  DstPort		  5
+	}
+	Line {
+	  SrcBlock		  "t constante"
+	  SrcPort		  1
+	  Points		  [35, 0; 0, -55]
+	  DstBlock		  "Mux"
+	  DstPort		  4
+	}
+	Line {
+	  SrcBlock		  "t aceleración"
+	  SrcPort		  1
+	  Points		  [35, 0; 0, -10]
+	  DstBlock		  "Mux"
+	  DstPort		  3
+	}
+	Line {
+	  SrcBlock		  "Vel máxima"
+	  SrcPort		  1
+	  Points		  [50, 0; 0, 30]
+	  DstBlock		  "Mux"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Clock"
+	  SrcPort		  1
+	  Points		  [110, 0]
+	  DstBlock		  "Mux"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Demux"
+	  SrcPort		  1
+	  Points		  [0, -25]
+	  DstBlock		  "Velocidad"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Demux"
+	  SrcPort		  2
+	  Points		  [0, 25]
+	  DstBlock		  "Aceleración"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Perfil Trapezoidal"
+	  SrcPort		  1
+	  DstBlock		  "Demux"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Perfil Trapezoidal de \nVelocidad Articulación 3"
+      Ports		      [0, 2, 0, 0, 0]
+      Position		      [90, 330, 150, 370]
+      BackgroundColor	      yellow
+      ShowPortLabels	      on
+      MaskType		      "Perfil Trapezoidal de Velocidad"
+      MaskPromptString	      "Velocidad máxima|Tiempo aceleración|Tiempo "
+			      "constante|Tiempo deceleración"
+      MaskStyleString	      "edit,edit,edit,edit"
+      MaskVariables	      "velmax=@1;tacel=@2;tconst=@3;tdecel=@4;"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      none
+      MaskIconUnits	      autoscale
+      MaskValueString	      "-pi/3|0.1|0.4|0.1"
+      System {
+	Name			"Perfil Trapezoidal de \nVelocidad Articulación"
+				" 3"
+	Location		[61, 175, 594, 520]
+	Open			off
+	ScreenColor		white
+	Block {
+	  BlockType		  Clock
+	  Name			  "Clock"
+	  Position		  [30, 25, 50, 45]
+	  Location		  [12, 31, 119, 76]
+	}
+	Block {
+	  BlockType		  Demux
+	  Name			  "Demux"
+	  Ports			  [1, 2, 0, 0, 0]
+	  Position		  [365, 117, 400, 153]
+	  Outputs		  "2"
+	}
+	Block {
+	  BlockType		  Mux
+	  Name			  "Mux"
+	  Ports			  [5, 1, 0, 0, 0]
+	  Position		  [180, 98, 225, 172]
+	  Inputs		  "5"
+	}
+	Block {
+	  BlockType		  MATLABFcn
+	  Name			  "Perfil Trapezoidal"
+	  Position		  [265, 120, 325, 150]
+	  MATLABFcn		  "trapezoidal"
+	  OutputWidth		  "2"
+	}
+	Block {
+	  BlockType		  Constant
+	  Name			  "Vel máxima"
+	  Position		  [25, 78, 65, 102]
+	  Value			  "velmax"
+	}
+	Block {
+	  BlockType		  Constant
+	  Name			  "t aceleración"
+	  Position		  [25, 133, 55, 157]
+	  Value			  "tacel"
+	}
+	Block {
+	  BlockType		  Constant
+	  Name			  "t constante"
+	  Position		  [25, 190, 65, 220]
+	  Value			  "tconst"
+	}
+	Block {
+	  BlockType		  Constant
+	  Name			  "t decel"
+	  Position		  [25, 247, 60, 273]
+	  Value			  "tdecel"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Velocidad"
+	  Position		  [475, 90, 495, 110]
+	  Port			  "1"
+	  OutputWhenDisabled	  held
+	  InitialOutput		  "0"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Aceleración"
+	  Position		  [475, 160, 495, 180]
+	  Port			  "2"
+	  OutputWhenDisabled	  held
+	  InitialOutput		  "0"
+	}
+	Line {
+	  SrcBlock		  "Mux"
+	  SrcPort		  1
+	  DstBlock		  "Perfil Trapezoidal"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "t decel"
+	  SrcPort		  1
+	  Points		  [60, 0; 0, -95]
+	  DstBlock		  "Mux"
+	  DstPort		  5
+	}
+	Line {
+	  SrcBlock		  "t constante"
+	  SrcPort		  1
+	  Points		  [35, 0; 0, -55]
+	  DstBlock		  "Mux"
+	  DstPort		  4
+	}
+	Line {
+	  SrcBlock		  "t aceleración"
+	  SrcPort		  1
+	  Points		  [35, 0; 0, -10]
+	  DstBlock		  "Mux"
+	  DstPort		  3
+	}
+	Line {
+	  SrcBlock		  "Vel máxima"
+	  SrcPort		  1
+	  Points		  [50, 0; 0, 30]
+	  DstBlock		  "Mux"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Clock"
+	  SrcPort		  1
+	  Points		  [110, 0]
+	  DstBlock		  "Mux"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Demux"
+	  SrcPort		  1
+	  Points		  [0, -25]
+	  DstBlock		  "Velocidad"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Demux"
+	  SrcPort		  2
+	  Points		  [0, 25]
+	  DstBlock		  "Aceleración"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Perfil Trapezoidal"
+	  SrcPort		  1
+	  DstBlock		  "Demux"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Perfil Trapezoidal de \nVelocidad Articulación 4"
+      Ports		      [0, 2, 0, 0, 0]
+      Position		      [90, 405, 150, 445]
+      BackgroundColor	      yellow
+      ShowPortLabels	      on
+      MaskType		      "Perfil Trapezoidal de Velocidad"
+      MaskPromptString	      "Velocidad máxima|Tiempo aceleración|Tiempo "
+			      "constante|Tiempo deceleración"
+      MaskStyleString	      "edit,edit,edit,edit"
+      MaskVariables	      "velmax=@1;tacel=@2;tconst=@3;tdecel=@4;"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      none
+      MaskIconUnits	      autoscale
+      MaskValueString	      "pi/3|0.1|0.4|0.1"
+      System {
+	Name			"Perfil Trapezoidal de \nVelocidad Articulación"
+				" 4"
+	Location		[61, 175, 594, 520]
+	Open			off
+	ScreenColor		white
+	Block {
+	  BlockType		  Clock
+	  Name			  "Clock"
+	  Position		  [30, 25, 50, 45]
+	  Location		  [12, 31, 119, 76]
+	}
+	Block {
+	  BlockType		  Demux
+	  Name			  "Demux"
+	  Ports			  [1, 2, 0, 0, 0]
+	  Position		  [365, 117, 400, 153]
+	  Outputs		  "2"
+	}
+	Block {
+	  BlockType		  Mux
+	  Name			  "Mux"
+	  Ports			  [5, 1, 0, 0, 0]
+	  Position		  [180, 98, 225, 172]
+	  Inputs		  "5"
+	}
+	Block {
+	  BlockType		  MATLABFcn
+	  Name			  "Perfil Trapezoidal"
+	  Position		  [265, 120, 325, 150]
+	  MATLABFcn		  "trapezoidal"
+	  OutputWidth		  "2"
+	}
+	Block {
+	  BlockType		  Constant
+	  Name			  "Vel máxima"
+	  Position		  [25, 78, 65, 102]
+	  Value			  "velmax"
+	}
+	Block {
+	  BlockType		  Constant
+	  Name			  "t aceleración"
+	  Position		  [25, 133, 55, 157]
+	  Value			  "tacel"
+	}
+	Block {
+	  BlockType		  Constant
+	  Name			  "t constante"
+	  Position		  [25, 190, 65, 220]
+	  Value			  "tconst"
+	}
+	Block {
+	  BlockType		  Constant
+	  Name			  "t decel"
+	  Position		  [25, 247, 60, 273]
+	  Value			  "tdecel"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Velocidad"
+	  Position		  [475, 90, 495, 110]
+	  Port			  "1"
+	  OutputWhenDisabled	  held
+	  InitialOutput		  "0"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Aceleración"
+	  Position		  [475, 160, 495, 180]
+	  Port			  "2"
+	  OutputWhenDisabled	  held
+	  InitialOutput		  "0"
+	}
+	Line {
+	  SrcBlock		  "Perfil Trapezoidal"
+	  SrcPort		  1
+	  DstBlock		  "Demux"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Demux"
+	  SrcPort		  2
+	  Points		  [0, 25]
+	  DstBlock		  "Aceleración"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Demux"
+	  SrcPort		  1
+	  Points		  [0, -25]
+	  DstBlock		  "Velocidad"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Clock"
+	  SrcPort		  1
+	  Points		  [110, 0]
+	  DstBlock		  "Mux"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Vel máxima"
+	  SrcPort		  1
+	  Points		  [50, 0; 0, 30]
+	  DstBlock		  "Mux"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "t aceleración"
+	  SrcPort		  1
+	  Points		  [35, 0; 0, -10]
+	  DstBlock		  "Mux"
+	  DstPort		  3
+	}
+	Line {
+	  SrcBlock		  "t constante"
+	  SrcPort		  1
+	  Points		  [35, 0; 0, -55]
+	  DstBlock		  "Mux"
+	  DstPort		  4
+	}
+	Line {
+	  SrcBlock		  "t decel"
+	  SrcPort		  1
+	  Points		  [60, 0; 0, -95]
+	  DstBlock		  "Mux"
+	  DstPort		  5
+	}
+	Line {
+	  SrcBlock		  "Mux"
+	  SrcPort		  1
+	  DstBlock		  "Perfil Trapezoidal"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Perfil Trapezoidal de \nVelocidad Articulación 5"
+      Ports		      [0, 2, 0, 0, 0]
+      Position		      [95, 480, 155, 520]
+      BackgroundColor	      yellow
+      ShowPortLabels	      on
+      MaskType		      "Perfil Trapezoidal de Velocidad"
+      MaskPromptString	      "Velocidad máxima|Tiempo aceleración|Tiempo "
+			      "constante|Tiempo deceleración"
+      MaskStyleString	      "edit,edit,edit,edit"
+      MaskVariables	      "velmax=@1;tacel=@2;tconst=@3;tdecel=@4;"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      none
+      MaskIconUnits	      autoscale
+      MaskValueString	      "-pi/3|0.1|0.4|0.1"
+      System {
+	Name			"Perfil Trapezoidal de \nVelocidad Articulación"
+				" 5"
+	Location		[61, 175, 594, 520]
+	Open			off
+	ScreenColor		white
+	Block {
+	  BlockType		  Clock
+	  Name			  "Clock"
+	  Position		  [30, 25, 50, 45]
+	  Location		  [12, 31, 119, 76]
+	}
+	Block {
+	  BlockType		  Demux
+	  Name			  "Demux"
+	  Ports			  [1, 2, 0, 0, 0]
+	  Position		  [365, 117, 400, 153]
+	  Outputs		  "2"
+	}
+	Block {
+	  BlockType		  Mux
+	  Name			  "Mux"
+	  Ports			  [5, 1, 0, 0, 0]
+	  Position		  [180, 98, 225, 172]
+	  Inputs		  "5"
+	}
+	Block {
+	  BlockType		  MATLABFcn
+	  Name			  "Perfil Trapezoidal"
+	  Position		  [265, 120, 325, 150]
+	  MATLABFcn		  "trapezoidal"
+	  OutputWidth		  "2"
+	}
+	Block {
+	  BlockType		  Constant
+	  Name			  "Vel máxima"
+	  Position		  [25, 78, 65, 102]
+	  Value			  "velmax"
+	}
+	Block {
+	  BlockType		  Constant
+	  Name			  "t aceleración"
+	  Position		  [25, 133, 55, 157]
+	  Value			  "tacel"
+	}
+	Block {
+	  BlockType		  Constant
+	  Name			  "t constante"
+	  Position		  [25, 190, 65, 220]
+	  Value			  "tconst"
+	}
+	Block {
+	  BlockType		  Constant
+	  Name			  "t decel"
+	  Position		  [25, 247, 60, 273]
+	  Value			  "tdecel"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Velocidad"
+	  Position		  [475, 90, 495, 110]
+	  Port			  "1"
+	  OutputWhenDisabled	  held
+	  InitialOutput		  "0"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Aceleración"
+	  Position		  [475, 160, 495, 180]
+	  Port			  "2"
+	  OutputWhenDisabled	  held
+	  InitialOutput		  "0"
+	}
+	Line {
+	  SrcBlock		  "Mux"
+	  SrcPort		  1
+	  DstBlock		  "Perfil Trapezoidal"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "t decel"
+	  SrcPort		  1
+	  Points		  [60, 0; 0, -95]
+	  DstBlock		  "Mux"
+	  DstPort		  5
+	}
+	Line {
+	  SrcBlock		  "t constante"
+	  SrcPort		  1
+	  Points		  [35, 0; 0, -55]
+	  DstBlock		  "Mux"
+	  DstPort		  4
+	}
+	Line {
+	  SrcBlock		  "t aceleración"
+	  SrcPort		  1
+	  Points		  [35, 0; 0, -10]
+	  DstBlock		  "Mux"
+	  DstPort		  3
+	}
+	Line {
+	  SrcBlock		  "Vel máxima"
+	  SrcPort		  1
+	  Points		  [50, 0; 0, 30]
+	  DstBlock		  "Mux"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Clock"
+	  SrcPort		  1
+	  Points		  [110, 0]
+	  DstBlock		  "Mux"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Demux"
+	  SrcPort		  1
+	  Points		  [0, -25]
+	  DstBlock		  "Velocidad"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Demux"
+	  SrcPort		  2
+	  Points		  [0, 25]
+	  DstBlock		  "Aceleración"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Perfil Trapezoidal"
+	  SrcPort		  1
+	  DstBlock		  "Demux"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Perfil Trapezoidal de \nVelocidad Articulación 6"
+      Ports		      [0, 2, 0, 0, 0]
+      Position		      [95, 560, 155, 600]
+      BackgroundColor	      yellow
+      ShowPortLabels	      on
+      MaskType		      "Perfil Trapezoidal de Velocidad"
+      MaskPromptString	      "Velocidad máxima|Tiempo aceleración|Tiempo "
+			      "constante|Tiempo deceleración"
+      MaskStyleString	      "edit,edit,edit,edit"
+      MaskVariables	      "velmax=@1;tacel=@2;tconst=@3;tdecel=@4;"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      none
+      MaskIconUnits	      autoscale
+      MaskValueString	      "pi/3|0.1|0.4|0.1"
+      System {
+	Name			"Perfil Trapezoidal de \nVelocidad Articulación"
+				" 6"
+	Location		[61, 175, 594, 520]
+	Open			off
+	ScreenColor		white
+	Block {
+	  BlockType		  Clock
+	  Name			  "Clock"
+	  Position		  [30, 25, 50, 45]
+	  Location		  [12, 31, 119, 76]
+	}
+	Block {
+	  BlockType		  Demux
+	  Name			  "Demux"
+	  Ports			  [1, 2, 0, 0, 0]
+	  Position		  [365, 117, 400, 153]
+	  Outputs		  "2"
+	}
+	Block {
+	  BlockType		  Mux
+	  Name			  "Mux"
+	  Ports			  [5, 1, 0, 0, 0]
+	  Position		  [180, 98, 225, 172]
+	  Inputs		  "5"
+	}
+	Block {
+	  BlockType		  MATLABFcn
+	  Name			  "Perfil Trapezoidal"
+	  Position		  [265, 120, 325, 150]
+	  MATLABFcn		  "trapezoidal"
+	  OutputWidth		  "2"
+	}
+	Block {
+	  BlockType		  Constant
+	  Name			  "Vel máxima"
+	  Position		  [25, 78, 65, 102]
+	  Value			  "velmax"
+	}
+	Block {
+	  BlockType		  Constant
+	  Name			  "t aceleración"
+	  Position		  [25, 133, 55, 157]
+	  Value			  "tacel"
+	}
+	Block {
+	  BlockType		  Constant
+	  Name			  "t constante"
+	  Position		  [25, 190, 65, 220]
+	  Value			  "tconst"
+	}
+	Block {
+	  BlockType		  Constant
+	  Name			  "t decel"
+	  Position		  [25, 247, 60, 273]
+	  Value			  "tdecel"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Velocidad"
+	  Position		  [475, 90, 495, 110]
+	  Port			  "1"
+	  OutputWhenDisabled	  held
+	  InitialOutput		  "0"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Aceleración"
+	  Position		  [475, 160, 495, 180]
+	  Port			  "2"
+	  OutputWhenDisabled	  held
+	  InitialOutput		  "0"
+	}
+	Line {
+	  SrcBlock		  "Perfil Trapezoidal"
+	  SrcPort		  1
+	  DstBlock		  "Demux"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Demux"
+	  SrcPort		  2
+	  Points		  [0, 25]
+	  DstBlock		  "Aceleración"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Demux"
+	  SrcPort		  1
+	  Points		  [0, -25]
+	  DstBlock		  "Velocidad"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Clock"
+	  SrcPort		  1
+	  Points		  [110, 0]
+	  DstBlock		  "Mux"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Vel máxima"
+	  SrcPort		  1
+	  Points		  [50, 0; 0, 30]
+	  DstBlock		  "Mux"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "t aceleración"
+	  SrcPort		  1
+	  Points		  [35, 0; 0, -10]
+	  DstBlock		  "Mux"
+	  DstPort		  3
+	}
+	Line {
+	  SrcBlock		  "t constante"
+	  SrcPort		  1
+	  Points		  [35, 0; 0, -55]
+	  DstBlock		  "Mux"
+	  DstPort		  4
+	}
+	Line {
+	  SrcBlock		  "t decel"
+	  SrcPort		  1
+	  Points		  [60, 0; 0, -95]
+	  DstBlock		  "Mux"
+	  DstPort		  5
+	}
+	Line {
+	  SrcBlock		  "Mux"
+	  SrcPort		  1
+	  DstBlock		  "Perfil Trapezoidal"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      Gain
+      Name		      "Reductor 1"
+      Position		      [570, 99, 620, 141]
+      BackgroundColor	      lightBlue
+      Gain		      "1/500"
+    }
+    Block {
+      BlockType		      Gain
+      Name		      "Reductor 2"
+      Position		      [575, 169, 625, 211]
+      BackgroundColor	      lightBlue
+      Gain		      "1/500"
+    }
+    Block {
+      BlockType		      Gain
+      Name		      "Reductor 3"
+      Position		      [575, 249, 625, 291]
+      BackgroundColor	      lightBlue
+      Gain		      "1/500"
+    }
+    Block {
+      BlockType		      Gain
+      Name		      "Reductor 4"
+      Position		      [575, 324, 625, 366]
+      BackgroundColor	      lightBlue
+      Gain		      "1/500"
+    }
+    Block {
+      BlockType		      Gain
+      Name		      "Reductor 5"
+      Position		      [575, 399, 625, 441]
+      BackgroundColor	      lightBlue
+      Gain		      "1/500"
+    }
+    Block {
+      BlockType		      Gain
+      Name		      "Reductor 6"
+      Position		      [575, 474, 625, 516]
+      BackgroundColor	      lightBlue
+      Gain		      "1/500"
+    }
+    Line {
+      SrcBlock		      "Demux"
+      SrcPort		      6
+      Points		      [10, 0; 0, 140]
+      DstBlock		      "Reductor 6"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Demux"
+      SrcPort		      5
+      Points		      [20, 0; 0, 75]
+      DstBlock		      "Reductor 5"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Demux"
+      SrcPort		      4
+      Points		      [30, 0]
+      DstBlock		      "Reductor 4"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Demux"
+      SrcPort		      3
+      Points		      [30, 0]
+      DstBlock		      "Reductor 3"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Demux"
+      SrcPort		      2
+      Points		      [15, 0; 0, -125]
+      DstBlock		      "Reductor 2"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Demux"
+      SrcPort		      1
+      Points		      [5, 0; 0, -185]
+      DstBlock		      "Reductor 1"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Perfil Trapezoidal de \nVelocidad Articulación 6"
+      SrcPort		      2
+      Points		      [120, 0]
+      DstBlock		      "Mux"
+      DstPort		      13
+    }
+    Line {
+      SrcBlock		      "Perfil Trapezoidal de \nVelocidad Articulación 5"
+      SrcPort		      2
+      Points		      [110, 0; 0, -105]
+      DstBlock		      "Mux"
+      DstPort		      12
+    }
+    Line {
+      SrcBlock		      "Perfil Trapezoidal de \nVelocidad Articulación 4"
+      SrcPort		      2
+      Points		      [105, 0; 0, -45]
+      DstBlock		      "Mux"
+      DstPort		      11
+    }
+    Line {
+      SrcBlock		      "Perfil Trapezoidal de \nVelocidad Articulación 3"
+      SrcPort		      2
+      Points		      [35, 0; 0, 15]
+      DstBlock		      "Mux"
+      DstPort		      10
+    }
+    Line {
+      SrcBlock		      "Perfil Trapezoidal de \nVelocidad Articulación 2"
+      SrcPort		      2
+      Points		      [40, 0; 0, 80]
+      DstBlock		      "Mux"
+      DstPort		      9
+    }
+    Line {
+      SrcBlock		      "Perfil Trapezoidal de \nVelocidad Articulación 1"
+      SrcPort		      2
+      Points		      [85, 0; 0, 150]
+      DstBlock		      "Mux"
+      DstPort		      8
+    }
+    Line {
+      SrcBlock		      "Perfil Trapezoidal de \nVelocidad Articulación 6"
+      SrcPort		      1
+      Points		      [85, 0; 0, -240]
+      DstBlock		      "Mux"
+      DstPort		      7
+    }
+    Line {
+      SrcBlock		      "Perfil Trapezoidal de \nVelocidad Articulación 5"
+      SrcPort		      1
+      Points		      [70, 0; 0, -175]
+      DstBlock		      "Mux"
+      DstPort		      6
+    }
+    Line {
+      SrcBlock		      "Perfil Trapezoidal de \nVelocidad Articulación 4"
+      SrcPort		      1
+      Points		      [65, 0; 0, -115]
+      DstBlock		      "Mux"
+      DstPort		      5
+    }
+    Line {
+      Labels		      [1, 0]
+      SrcBlock		      "Reductor 6"
+      SrcPort		      1
+      DstBlock		      "Par Articulación 6"
+      DstPort		      1
+    }
+    Line {
+      Labels		      [1, 0]
+      SrcBlock		      "Reductor 4"
+      SrcPort		      1
+      DstBlock		      "Par Articulación 4"
+      DstPort		      1
+    }
+    Line {
+      Labels		      [1, 0]
+      SrcBlock		      "Reductor 3"
+      SrcPort		      1
+      DstBlock		      "Par Articulación 3"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Reductor 2"
+      SrcPort		      1
+      DstBlock		      "Par Articulación 2"
+      DstPort		      1
+    }
+    Line {
+      Labels		      [1, 0]
+      SrcBlock		      "Reductor 5"
+      SrcPort		      1
+      DstBlock		      "Par Articulación 5"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Perfil Trapezoidal de \nVelocidad Articulación 3"
+      SrcPort		      1
+      Points		      [50, 0; 0, -55]
+      DstBlock		      "Mux"
+      DstPort		      4
+    }
+    Line {
+      SrcBlock		      "Perfil Trapezoidal de \nVelocidad Articulación 2"
+      SrcPort		      1
+      Points		      [95, 0; 0, 10]
+      DstBlock		      "Mux"
+      DstPort		      3
+    }
+    Line {
+      SrcBlock		      "Perfil Trapezoidal de \nVelocidad Articulación 1"
+      SrcPort		      1
+      Points		      [115, 0; 0, 80]
+      DstBlock		      "Mux"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "Reductor 1"
+      SrcPort		      1
+      DstBlock		      "Par Articulación 1"
+      DstPort		      1
+    }
+    Line {
+      Labels		      [0, 0]
+      SrcBlock		      "Mux"
+      SrcPort		      1
+      DstBlock		      "Dinámica Inversa"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Peor Posición Robot"
+      SrcPort		      1
+      Points		      [115, 0]
+      DstBlock		      "Mux"
+      DstPort		      1
+    }
+    Line {
+      Labels		      [0, 0]
+      SrcBlock		      "Dinámica Inversa"
+      SrcPort		      1
+      DstBlock		      "Demux"
+      DstPort		      1
+    }
+    Annotation {
+      Position		      [410, 45]
+      ForegroundColor	      blue
+      FontName		      "Times New Roman"
+      FontSize		      14
+      FontWeight	      bold
+      Text		      "SELECCIÓN DE MOTORES EN BASE \nA LA DINÁMICA "
+			      "INVERSA DEL ROBOT"
+      DropShadow	      on
+    }
+  }
+}

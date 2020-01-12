@@ -1,0 +1,31 @@
+Para próximos proyectos visita mi canal de youtube: 
+----->  https://www.youtube.com/channel/UCSFuCPnuj9d379TgGQ880sw
+
+/*
+Copyright (c) 2015, Sebastian Cuenca,Armando Arevalo, Wilmer Guaño.
+All rights reserved.
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>
+*/
+
+**********************************************************
+            INSTRUCCIONES
+**********************************************************
+
+1. Descomprimir el archivo "librería de Peter Corke.rar"
+2. En Matlab ir a la ubicacion de la carpeta "libreria Peter Corke" dan click derecho a la misma 
+se despliega un menú, van a--->Add to Path---->Selected Folders and subfolders.
+3. Descomprimen el archivo "gui robotica.rar" abren la carpeta y el archivo "ROBOTICA INDUSTRIAL.m"
+4. Corren el archivo en Matlab y listo!!! 
+

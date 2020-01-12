@@ -1,0 +1,4 @@
+th1=90*pi/180;
+th2=60*pi/180;
+p=pcd(l1,l2,th1,th2);
+x=[0 l1*cos(th1) p]

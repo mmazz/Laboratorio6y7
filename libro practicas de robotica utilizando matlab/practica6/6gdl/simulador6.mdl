@@ -1,0 +1,2578 @@
+Model {
+  Name			  "simulador6"
+  Version		  2.09
+  SimParamPage		  Solver
+  SampleTimeColors	  off
+  InvariantConstants	  off
+  WideVectorLines	  off
+  ShowLineWidths	  off
+  PaperOrientation	  landscape
+  PaperType		  usletter
+  PaperUnits		  inches
+  StartTime		  "0.0"
+  StopTime		  "1"
+  Solver		  ode4
+  RelTol		  "1e-3"
+  AbsTol		  "1e-3"
+  Refine		  "1"
+  MaxStep		  "0.1"
+  InitialStep		  "auto"
+  FixedStep		  "1e-4"
+  MaxOrder		  5
+  OutputOption		  RefineOutputTimes
+  OutputTimes		  "[]"
+  LoadExternalInput	  off
+  ExternalInput		  "[t, u]"
+  SaveTime		  off
+  TimeSaveName		  "tout"
+  SaveState		  off
+  StateSaveName		  "xout"
+  SaveOutput		  off
+  OutputSaveName	  "yout"
+  LoadInitialState	  off
+  InitialState		  "xInitial"
+  SaveFinalState	  off
+  FinalStateName	  "xFinal"
+  LimitMaxRows		  off
+  MaxRows		  "1000"
+  Decimation		  "1"
+  AlgebraicLoopMsg	  warning
+  MinStepSizeMsg	  warning
+  UnconnectedInputMsg	  warning
+  UnconnectedOutputMsg	  warning
+  UnconnectedLineMsg	  warning
+  ConsistencyChecking	  off
+  ZeroCross		  on
+  SimulationMode	  normal
+  RTWSystemTargetFile	  "grt.tlc"
+  RTWInlineParameters	  off
+  RTWRetainRTWFile	  off
+  RTWTemplateMakefile	  "grt_vc.tmf"
+  RTWMakeCommand	  "make_rtw"
+  RTWGenerateCodeOnly	  off
+  ExtModeMexFile	  "ext_comm"
+  ExtModeBatchMode	  off
+  BlockDefaults {
+    Orientation		    right
+    ForegroundColor	    black
+    BackgroundColor	    white
+    DropShadow		    off
+    NamePlacement	    normal
+    FontName		    "Helvetica"
+    FontSize		    10
+    FontWeight		    normal
+    FontAngle		    normal
+    ShowName		    on
+  }
+  AnnotationDefaults {
+    HorizontalAlignment	    center
+    VerticalAlignment	    middle
+    ForegroundColor	    black
+    BackgroundColor	    white
+    DropShadow		    off
+    FontName		    "Helvetica"
+    FontSize		    10
+    FontWeight		    normal
+    FontAngle		    normal
+  }
+  LineDefaults {
+    FontName		    "Helvetica"
+    FontSize		    9
+    FontWeight		    normal
+    FontAngle		    normal
+  }
+  System {
+    Name		    "simulador6"
+    Location		    [112, 57, 963, 734]
+    Open		    on
+    ScreenColor		    white
+    Block {
+      BlockType		      Gain
+      Name		      "Amplificador 1"
+      Position		      [580, 80, 610, 110]
+      Gain		      "25"
+    }
+    Block {
+      BlockType		      Gain
+      Name		      "Amplificador 2"
+      Position		      [585, 135, 615, 165]
+      Gain		      "25"
+    }
+    Block {
+      BlockType		      Gain
+      Name		      "Amplificador 3"
+      Position		      [580, 190, 610, 220]
+      Gain		      "25"
+    }
+    Block {
+      BlockType		      Gain
+      Name		      "Amplificador 4"
+      Position		      [585, 245, 615, 275]
+      Gain		      "25"
+    }
+    Block {
+      BlockType		      Gain
+      Name		      "Amplificador 5"
+      Position		      [580, 295, 610, 325]
+      Gain		      "25"
+    }
+    Block {
+      BlockType		      Gain
+      Name		      "Amplificador 6"
+      Position		      [580, 355, 610, 385]
+      Gain		      "25"
+    }
+    Block {
+      BlockType		      MATLABFcn
+      Name		      "Cinemática\nInversa"
+      Position		      [115, 360, 175, 390]
+      Orientation	      down
+      NamePlacement	      alternate
+      MATLABFcn		      "cininv6gdl"
+      OutputWidth	      "6"
+    }
+    Block {
+      BlockType		      Demux
+      Name		      "Demux1"
+      Ports		      [1, 6, 0, 0, 0]
+      Position		      [680, 421, 720, 479]
+      Orientation	      left
+      NamePlacement	      alternate
+      Outputs		      "6"
+    }
+    Block {
+      BlockType		      Demux
+      Name		      "Demux2"
+      Ports		      [1, 6, 0, 0, 0]
+      Position		      [275, 178, 335, 242]
+      ShowName		      off
+      Outputs		      "6"
+    }
+    Block {
+      BlockType		      Demux
+      Name		      "Demux3"
+      Ports		      [1, 6, 0, 0, 0]
+      Position		      [390, 442, 450, 508]
+      Orientation	      left
+      NamePlacement	      alternate
+      ShowName		      off
+      Outputs		      "6"
+    }
+    Block {
+      BlockType		      Scope
+      Name		      "Graficas"
+      Ports		      [1, 0, 0, 0, 0]
+      Position		      [295, 585, 325, 615]
+      Orientation	      left
+      BackgroundColor	      green
+      NamePlacement	      alternate
+      Floating		      off
+      Location		      [94, 112, 893, 617]
+      Open		      off
+      Grid		      on
+      TickLabels	      on
+      ZoomMode		      on
+      TimeRange		      "auto"
+      YMin		      "-2              "
+      YMax		      "4               "
+      SaveToWorkspace	      off
+      SaveName		      "ScopeData"
+      LimitMaxRows	      on
+      MaxRows		      "5000"
+      Decimation	      "1"
+      SampleInput	      off
+      SampleTime	      "0"
+    }
+    Block {
+      BlockType		      Integrator
+      Name		      "Integrator"
+      Ports		      [1, 1, 0, 0, 0]
+      Position		      [1060, 220, 1080, 240]
+      ExternalReset	      none
+      InitialConditionSource      internal
+      InitialCondition	      "[0 0 0 0 0 0]"
+      LimitOutput	      off
+      UpperSaturationLimit      "inf"
+      LowerSaturationLimit      "-inf"
+      ShowSaturationPort      off
+      ShowStatePort	      off
+      AbsoluteTolerance	      "auto"
+    }
+    Block {
+      BlockType		      Integrator
+      Name		      "Integrator1"
+      Ports		      [2, 1, 0, 0, 0]
+      Position		      [975, 515, 995, 535]
+      Orientation	      left
+      ExternalReset	      none
+      InitialConditionSource      external
+      InitialCondition	      "[0 0 0 0 0 0]"
+      LimitOutput	      off
+      UpperSaturationLimit      "inf"
+      LowerSaturationLimit      "-inf"
+      ShowSaturationPort      off
+      ShowStatePort	      off
+      AbsoluteTolerance	      "auto"
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Motor 1"
+      Ports		      [2, 1, 0, 0, 0]
+      Position		      [680, 87, 725, 118]
+      BackgroundColor	      lightBlue
+      ShowPortLabels	      on
+      MaskType		      "Motor"
+      MaskPromptString	      "Resistencia (Ohmios)|Inductancia (Henrios)|Kt "
+			      "(Nm/A)|Kv (V/rad/s)|Corriente máxima (Amperios)|"
+			      "Reductor"
+      MaskStyleString	      "edit,edit,edit,edit,edit,edit"
+      MaskVariables	      "R=@1;L=@2;Kt=@3;Kv=@4;imax=@5;red=@6;"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      none
+      MaskIconUnits	      autoscale
+      MaskValueString	      "0.8|0.00093|0.058|0.058|18.5|500"
+      System {
+	Name			"Motor 1"
+	Location		[134, 311, 783, 584]
+	Open			off
+	ScreenColor		white
+	Block {
+	  BlockType		  Inport
+	  Name			  "Volt"
+	  Position		  [25, 68, 55, 82]
+	  Port			  "1"
+	  PortWidth		  "-1"
+	  SampleTime		  "-1"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "Vel"
+	  Position		  [20, 123, 50, 137]
+	  Port			  "2"
+	  PortWidth		  "-1"
+	  SampleTime		  "-1"
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "Kt"
+	  Position		  [440, 64, 480, 96]
+	  Gain			  "Kt"
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "Kv"
+	  Position		  [135, 112, 190, 148]
+	  Gain			  "Kv"
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "Reductor"
+	  Position		  [75, 109, 115, 151]
+	  Gain			  "red"
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "Reductor1"
+	  Position		  [510, 63, 540, 97]
+	  Gain			  "red"
+	}
+	Block {
+	  BlockType		  Saturate
+	  Name			  "Saturation"
+	  Position		  [375, 65, 405, 95]
+	  UpperLimit		  "imax"
+	  LowerLimit		  "-imax"
+	}
+	Block {
+	  BlockType		  Sum
+	  Name			  "Sum1"
+	  Ports			  [2, 1, 0, 0, 0]
+	  Position		  [220, 69, 240, 91]
+	  Inputs		  "+-"
+	}
+	Block {
+	  BlockType		  TransferFcn
+	  Name			  "motor"
+	  Position		  [275, 61, 335, 99]
+	  Numerator		  "[1]"
+	  Denominator		  "[L R]"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Par"
+	  Position		  [570, 73, 600, 87]
+	  Port			  "1"
+	  OutputWhenDisabled	  held
+	  InitialOutput		  "0"
+	}
+	Line {
+	  Labels		  [0, 0]
+	  SrcBlock		  "Vel"
+	  SrcPort		  1
+	  DstBlock		  "Reductor"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Volt"
+	  SrcPort		  1
+	  DstBlock		  "Sum1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Kv"
+	  SrcPort		  1
+	  Points		  [0, -45]
+	  DstBlock		  "Sum1"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Reductor"
+	  SrcPort		  1
+	  DstBlock		  "Kv"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Sum1"
+	  SrcPort		  1
+	  DstBlock		  "motor"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Reductor1"
+	  SrcPort		  1
+	  DstBlock		  "Par"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Kt"
+	  SrcPort		  1
+	  DstBlock		  "Reductor1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "motor"
+	  SrcPort		  1
+	  DstBlock		  "Saturation"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Saturation"
+	  SrcPort		  1
+	  DstBlock		  "Kt"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Motor 2"
+      Ports		      [2, 1, 0, 0, 0]
+      Position		      [680, 142, 725, 173]
+      BackgroundColor	      lightBlue
+      ShowPortLabels	      on
+      MaskType		      "Motor"
+      MaskPromptString	      "Resistencia (Ohmios)|Inductancia (Henrios)|Kt "
+			      "(Nm/A)|Kv (V/rad/s)|Corriente máxima (Amperios)|"
+			      "Reductor"
+      MaskStyleString	      "edit,edit,edit,edit,edit,edit"
+      MaskVariables	      "R=@1;L=@2;Kt=@3;Kv=@4;imax=@5;red=@6;"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      none
+      MaskIconUnits	      autoscale
+      MaskValueString	      "0.7|0.00101|0.112|0.112|21.8|500"
+      System {
+	Name			"Motor 2"
+	Location		[134, 311, 783, 584]
+	Open			off
+	ScreenColor		white
+	Block {
+	  BlockType		  Inport
+	  Name			  "Volt"
+	  Position		  [25, 68, 55, 82]
+	  Port			  "1"
+	  PortWidth		  "-1"
+	  SampleTime		  "-1"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "Vel"
+	  Position		  [20, 123, 50, 137]
+	  Port			  "2"
+	  PortWidth		  "-1"
+	  SampleTime		  "-1"
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "Kt"
+	  Position		  [440, 64, 480, 96]
+	  Gain			  "Kt"
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "Kv"
+	  Position		  [135, 112, 190, 148]
+	  Gain			  "Kv"
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "Reductor"
+	  Position		  [75, 109, 115, 151]
+	  Gain			  "red"
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "Reductor1"
+	  Position		  [510, 63, 540, 97]
+	  Gain			  "red"
+	}
+	Block {
+	  BlockType		  Saturate
+	  Name			  "Saturation"
+	  Position		  [375, 65, 405, 95]
+	  UpperLimit		  "imax"
+	  LowerLimit		  "-imax"
+	}
+	Block {
+	  BlockType		  Sum
+	  Name			  "Sum1"
+	  Ports			  [2, 1, 0, 0, 0]
+	  Position		  [220, 69, 240, 91]
+	  Inputs		  "+-"
+	}
+	Block {
+	  BlockType		  TransferFcn
+	  Name			  "motor"
+	  Position		  [275, 61, 335, 99]
+	  Numerator		  "[1]"
+	  Denominator		  "[L R]"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Par"
+	  Position		  [570, 73, 600, 87]
+	  Port			  "1"
+	  OutputWhenDisabled	  held
+	  InitialOutput		  "0"
+	}
+	Line {
+	  SrcBlock		  "Saturation"
+	  SrcPort		  1
+	  DstBlock		  "Kt"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "motor"
+	  SrcPort		  1
+	  DstBlock		  "Saturation"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Kt"
+	  SrcPort		  1
+	  DstBlock		  "Reductor1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Reductor1"
+	  SrcPort		  1
+	  DstBlock		  "Par"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Sum1"
+	  SrcPort		  1
+	  DstBlock		  "motor"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Reductor"
+	  SrcPort		  1
+	  DstBlock		  "Kv"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Kv"
+	  SrcPort		  1
+	  Points		  [0, -45]
+	  DstBlock		  "Sum1"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Volt"
+	  SrcPort		  1
+	  DstBlock		  "Sum1"
+	  DstPort		  1
+	}
+	Line {
+	  Labels		  [0, 0]
+	  SrcBlock		  "Vel"
+	  SrcPort		  1
+	  DstBlock		  "Reductor"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Motor 3"
+      Ports		      [2, 1, 0, 0, 0]
+      Position		      [680, 197, 725, 228]
+      BackgroundColor	      lightBlue
+      ShowPortLabels	      on
+      MaskType		      "Motor"
+      MaskPromptString	      "Resistencia (Ohmios)|Inductancia (Henrios)|Kt "
+			      "(Nm/A)|Kv (V/rad/s)|Corriente máxima (Amperios)|"
+			      "Reductor"
+      MaskStyleString	      "edit,edit,edit,edit,edit,edit"
+      MaskVariables	      "R=@1;L=@2;Kt=@3;Kv=@4;imax=@5;red=@6;"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      none
+      MaskIconUnits	      autoscale
+      MaskValueString	      "0.8|0.00093|0.058|0.058|18.5|500"
+      System {
+	Name			"Motor 3"
+	Location		[134, 311, 783, 584]
+	Open			off
+	ScreenColor		white
+	Block {
+	  BlockType		  Inport
+	  Name			  "Volt"
+	  Position		  [25, 68, 55, 82]
+	  Port			  "1"
+	  PortWidth		  "-1"
+	  SampleTime		  "-1"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "Vel"
+	  Position		  [20, 123, 50, 137]
+	  Port			  "2"
+	  PortWidth		  "-1"
+	  SampleTime		  "-1"
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "Kt"
+	  Position		  [440, 64, 480, 96]
+	  Gain			  "Kt"
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "Kv"
+	  Position		  [135, 112, 190, 148]
+	  Gain			  "Kv"
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "Reductor"
+	  Position		  [75, 109, 115, 151]
+	  Gain			  "red"
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "Reductor1"
+	  Position		  [510, 63, 540, 97]
+	  Gain			  "red"
+	}
+	Block {
+	  BlockType		  Saturate
+	  Name			  "Saturation"
+	  Position		  [375, 65, 405, 95]
+	  UpperLimit		  "imax"
+	  LowerLimit		  "-imax"
+	}
+	Block {
+	  BlockType		  Sum
+	  Name			  "Sum1"
+	  Ports			  [2, 1, 0, 0, 0]
+	  Position		  [220, 69, 240, 91]
+	  Inputs		  "+-"
+	}
+	Block {
+	  BlockType		  TransferFcn
+	  Name			  "motor"
+	  Position		  [275, 61, 335, 99]
+	  Numerator		  "[1]"
+	  Denominator		  "[L R]"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Par"
+	  Position		  [570, 73, 600, 87]
+	  Port			  "1"
+	  OutputWhenDisabled	  held
+	  InitialOutput		  "0"
+	}
+	Line {
+	  Labels		  [0, 0]
+	  SrcBlock		  "Vel"
+	  SrcPort		  1
+	  DstBlock		  "Reductor"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Volt"
+	  SrcPort		  1
+	  DstBlock		  "Sum1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Kv"
+	  SrcPort		  1
+	  Points		  [0, -45]
+	  DstBlock		  "Sum1"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Reductor"
+	  SrcPort		  1
+	  DstBlock		  "Kv"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Sum1"
+	  SrcPort		  1
+	  DstBlock		  "motor"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Reductor1"
+	  SrcPort		  1
+	  DstBlock		  "Par"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Kt"
+	  SrcPort		  1
+	  DstBlock		  "Reductor1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "motor"
+	  SrcPort		  1
+	  DstBlock		  "Saturation"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Saturation"
+	  SrcPort		  1
+	  DstBlock		  "Kt"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Motor 4"
+      Ports		      [2, 1, 0, 0, 0]
+      Position		      [680, 252, 725, 283]
+      BackgroundColor	      lightBlue
+      ShowPortLabels	      on
+      MaskType		      "Motor"
+      MaskPromptString	      "Resistencia (Ohmios)|Inductancia (Henrios)|Kt "
+			      "(Nm/A)|Kv (V/rad/s)|Corriente máxima (Amperios)|"
+			      "Reductor"
+      MaskStyleString	      "edit,edit,edit,edit,edit,edit"
+      MaskVariables	      "R=@1;L=@2;Kt=@3;Kv=@4;imax=@5;red=@6;"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      none
+      MaskIconUnits	      autoscale
+      MaskValueString	      "6.9|0.00128|0.035|0.035|3.6|500"
+      System {
+	Name			"Motor 4"
+	Location		[134, 311, 783, 584]
+	Open			off
+	ScreenColor		white
+	Block {
+	  BlockType		  Inport
+	  Name			  "Volt"
+	  Position		  [25, 68, 55, 82]
+	  Port			  "1"
+	  PortWidth		  "-1"
+	  SampleTime		  "-1"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "Vel"
+	  Position		  [20, 123, 50, 137]
+	  Port			  "2"
+	  PortWidth		  "-1"
+	  SampleTime		  "-1"
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "Kt"
+	  Position		  [440, 64, 480, 96]
+	  Gain			  "Kt"
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "Kv"
+	  Position		  [135, 112, 190, 148]
+	  Gain			  "Kv"
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "Reductor"
+	  Position		  [75, 109, 115, 151]
+	  Gain			  "red"
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "Reductor1"
+	  Position		  [510, 63, 540, 97]
+	  Gain			  "red"
+	}
+	Block {
+	  BlockType		  Saturate
+	  Name			  "Saturation"
+	  Position		  [375, 65, 405, 95]
+	  UpperLimit		  "imax"
+	  LowerLimit		  "-imax"
+	}
+	Block {
+	  BlockType		  Sum
+	  Name			  "Sum1"
+	  Ports			  [2, 1, 0, 0, 0]
+	  Position		  [220, 69, 240, 91]
+	  Inputs		  "+-"
+	}
+	Block {
+	  BlockType		  TransferFcn
+	  Name			  "motor"
+	  Position		  [275, 61, 335, 99]
+	  Numerator		  "[1]"
+	  Denominator		  "[L R]"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Par"
+	  Position		  [570, 73, 600, 87]
+	  Port			  "1"
+	  OutputWhenDisabled	  held
+	  InitialOutput		  "0"
+	}
+	Line {
+	  SrcBlock		  "Saturation"
+	  SrcPort		  1
+	  DstBlock		  "Kt"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "motor"
+	  SrcPort		  1
+	  DstBlock		  "Saturation"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Kt"
+	  SrcPort		  1
+	  DstBlock		  "Reductor1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Reductor1"
+	  SrcPort		  1
+	  DstBlock		  "Par"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Sum1"
+	  SrcPort		  1
+	  DstBlock		  "motor"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Reductor"
+	  SrcPort		  1
+	  DstBlock		  "Kv"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Kv"
+	  SrcPort		  1
+	  Points		  [0, -45]
+	  DstBlock		  "Sum1"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Volt"
+	  SrcPort		  1
+	  DstBlock		  "Sum1"
+	  DstPort		  1
+	}
+	Line {
+	  Labels		  [0, 0]
+	  SrcBlock		  "Vel"
+	  SrcPort		  1
+	  DstBlock		  "Reductor"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Motor 5"
+      Ports		      [2, 1, 0, 0, 0]
+      Position		      [680, 302, 725, 333]
+      BackgroundColor	      lightBlue
+      ShowPortLabels	      on
+      MaskType		      "Motor"
+      MaskPromptString	      "Resistencia (Ohmios)|Inductancia (Henrios)|Kt "
+			      "(Nm/A)|Kv (V/rad/s)|Corriente máxima (Amperios)|"
+			      "Reductor"
+      MaskStyleString	      "edit,edit,edit,edit,edit,edit"
+      MaskVariables	      "R=@1;L=@2;Kt=@3;Kv=@4;imax=@5;red=@6;"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      none
+      MaskIconUnits	      autoscale
+      MaskValueString	      "6.9|0.00128|0.035|0.035|3.6|500"
+      System {
+	Name			"Motor 5"
+	Location		[134, 311, 783, 584]
+	Open			off
+	ScreenColor		white
+	Block {
+	  BlockType		  Inport
+	  Name			  "Volt"
+	  Position		  [25, 68, 55, 82]
+	  Port			  "1"
+	  PortWidth		  "-1"
+	  SampleTime		  "-1"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "Vel"
+	  Position		  [20, 123, 50, 137]
+	  Port			  "2"
+	  PortWidth		  "-1"
+	  SampleTime		  "-1"
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "Kt"
+	  Position		  [440, 64, 480, 96]
+	  Gain			  "Kt"
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "Kv"
+	  Position		  [135, 112, 190, 148]
+	  Gain			  "Kv"
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "Reductor"
+	  Position		  [75, 109, 115, 151]
+	  Gain			  "red"
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "Reductor1"
+	  Position		  [510, 63, 540, 97]
+	  Gain			  "red"
+	}
+	Block {
+	  BlockType		  Saturate
+	  Name			  "Saturation"
+	  Position		  [375, 65, 405, 95]
+	  UpperLimit		  "imax"
+	  LowerLimit		  "-imax"
+	}
+	Block {
+	  BlockType		  Sum
+	  Name			  "Sum1"
+	  Ports			  [2, 1, 0, 0, 0]
+	  Position		  [220, 69, 240, 91]
+	  Inputs		  "+-"
+	}
+	Block {
+	  BlockType		  TransferFcn
+	  Name			  "motor"
+	  Position		  [275, 61, 335, 99]
+	  Numerator		  "[1]"
+	  Denominator		  "[L R]"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Par"
+	  Position		  [570, 73, 600, 87]
+	  Port			  "1"
+	  OutputWhenDisabled	  held
+	  InitialOutput		  "0"
+	}
+	Line {
+	  SrcBlock		  "Saturation"
+	  SrcPort		  1
+	  DstBlock		  "Kt"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "motor"
+	  SrcPort		  1
+	  DstBlock		  "Saturation"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Kt"
+	  SrcPort		  1
+	  DstBlock		  "Reductor1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Reductor1"
+	  SrcPort		  1
+	  DstBlock		  "Par"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Sum1"
+	  SrcPort		  1
+	  DstBlock		  "motor"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Reductor"
+	  SrcPort		  1
+	  DstBlock		  "Kv"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Kv"
+	  SrcPort		  1
+	  Points		  [0, -45]
+	  DstBlock		  "Sum1"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Volt"
+	  SrcPort		  1
+	  DstBlock		  "Sum1"
+	  DstPort		  1
+	}
+	Line {
+	  Labels		  [0, 0]
+	  SrcBlock		  "Vel"
+	  SrcPort		  1
+	  DstBlock		  "Reductor"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Motor 6"
+      Ports		      [2, 1, 0, 0, 0]
+      Position		      [675, 362, 720, 393]
+      BackgroundColor	      lightBlue
+      ShowPortLabels	      on
+      MaskType		      "Motor"
+      MaskPromptString	      "Resistencia (Ohmios)|Inductancia (Henrios)|Kt "
+			      "(Nm/A)|Kv (V/rad/s)|Corriente máxima (Amperios)|"
+			      "Reductor"
+      MaskStyleString	      "edit,edit,edit,edit,edit,edit"
+      MaskVariables	      "R=@1;L=@2;Kt=@3;Kv=@4;imax=@5;red=@6;"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      none
+      MaskIconUnits	      autoscale
+      MaskValueString	      "6.9|0.00128|0.035|0.035|3.6|500"
+      System {
+	Name			"Motor 6"
+	Location		[134, 311, 783, 584]
+	Open			off
+	ScreenColor		white
+	Block {
+	  BlockType		  Inport
+	  Name			  "Volt"
+	  Position		  [25, 68, 55, 82]
+	  Port			  "1"
+	  PortWidth		  "-1"
+	  SampleTime		  "-1"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "Vel"
+	  Position		  [20, 123, 50, 137]
+	  Port			  "2"
+	  PortWidth		  "-1"
+	  SampleTime		  "-1"
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "Kt"
+	  Position		  [440, 64, 480, 96]
+	  Gain			  "Kt"
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "Kv"
+	  Position		  [135, 112, 190, 148]
+	  Gain			  "Kv"
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "Reductor"
+	  Position		  [75, 109, 115, 151]
+	  Gain			  "red"
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "Reductor1"
+	  Position		  [510, 63, 540, 97]
+	  Gain			  "red"
+	}
+	Block {
+	  BlockType		  Saturate
+	  Name			  "Saturation"
+	  Position		  [375, 65, 405, 95]
+	  UpperLimit		  "imax"
+	  LowerLimit		  "-imax"
+	}
+	Block {
+	  BlockType		  Sum
+	  Name			  "Sum1"
+	  Ports			  [2, 1, 0, 0, 0]
+	  Position		  [220, 69, 240, 91]
+	  Inputs		  "+-"
+	}
+	Block {
+	  BlockType		  TransferFcn
+	  Name			  "motor"
+	  Position		  [275, 61, 335, 99]
+	  Numerator		  "[1]"
+	  Denominator		  "[L R]"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Par"
+	  Position		  [570, 73, 600, 87]
+	  Port			  "1"
+	  OutputWhenDisabled	  held
+	  InitialOutput		  "0"
+	}
+	Line {
+	  SrcBlock		  "Saturation"
+	  SrcPort		  1
+	  DstBlock		  "Kt"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "motor"
+	  SrcPort		  1
+	  DstBlock		  "Saturation"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Kt"
+	  SrcPort		  1
+	  DstBlock		  "Reductor1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Reductor1"
+	  SrcPort		  1
+	  DstBlock		  "Par"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Sum1"
+	  SrcPort		  1
+	  DstBlock		  "motor"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Reductor"
+	  SrcPort		  1
+	  DstBlock		  "Kv"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Kv"
+	  SrcPort		  1
+	  Points		  [0, -45]
+	  DstBlock		  "Sum1"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Volt"
+	  SrcPort		  1
+	  DstBlock		  "Sum1"
+	  DstPort		  1
+	}
+	Line {
+	  Labels		  [0, 0]
+	  SrcBlock		  "Vel"
+	  SrcPort		  1
+	  DstBlock		  "Reductor"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      Mux
+      Name		      "Mux"
+      Ports		      [3, 1, 0, 0, 0]
+      Position		      [885, 214, 915, 246]
+      Inputs		      "3"
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "PID 1"
+      Ports		      [1, 1, 0, 0, 0]
+      Position		      [455, 83, 490, 107]
+      BackgroundColor	      lightBlue
+      ShowPortLabels	      off
+      MaskType		      "PID Controller"
+      MaskDescription	      "Enter expressions for proportional, integral, "
+			      "and derivative terms.\nP+I/s+Ds"
+      MaskHelp		      "This block implements a PID controller where "
+			      "parameters are entered for the Proportional, "
+			      "Integral and Derivative terms. Unmask this "
+			      "block to see how it works. The derivative "
+			      "term is implemented using a true derivative "
+			      "block."
+      MaskPromptString	      "Proportional:|Integral|Derivative:"
+      MaskStyleString	      "edit,edit,edit"
+      MaskVariables	      "P=@1;I=@2;D=@3;"
+      MaskDisplay	      "disp('PID')"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      none
+      MaskIconUnits	      autoscale
+      MaskValueString	      "500|0|12"
+      System {
+	Name			"PID 1"
+	Location		[0, 0, 362, 244]
+	Open			off
+	ScreenColor		white
+	Block {
+	  BlockType		  Inport
+	  Name			  "In_1"
+	  Position		  [25, 65, 45, 85]
+	  Port			  "1"
+	  PortWidth		  "-1"
+	  SampleTime		  "-1"
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "D"
+	  Position		  [95, 129, 115, 151]
+	  Gain			  "D"
+	}
+	Block {
+	  BlockType		  Derivative
+	  Name			  "Derivative"
+	  Position		  [150, 128, 190, 152]
+	}
+	Block {
+	  BlockType		  TransferFcn
+	  Name			  "Integral"
+	  Position		  [110, 57, 145, 93]
+	  Numerator		  "[I]"
+	  Denominator		  "[1 0]"
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "Proportional"
+	  Position		  [120, 13, 140, 37]
+	  Gain			  "P"
+	}
+	Block {
+	  BlockType		  Sum
+	  Name			  "Sum"
+	  Ports			  [3, 1, 0, 0, 0]
+	  Position		  [245, 57, 265, 93]
+	  Inputs		  "+++"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out_1"
+	  Position		  [290, 65, 310, 85]
+	  Port			  "1"
+	  OutputWhenDisabled	  held
+	  InitialOutput		  "0"
+	}
+	Line {
+	  SrcBlock		  "D"
+	  SrcPort		  1
+	  DstBlock		  "Derivative"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Sum"
+	  SrcPort		  1
+	  DstBlock		  "Out_1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "In_1"
+	  SrcPort		  1
+	  Points		  [15, 0]
+	  Branch {
+	    Points		    [0, 65]
+	    DstBlock		    "D"
+	    DstPort		    1
+	  }
+	  Branch {
+	    Points		    [15, 0]
+	    Branch {
+	      DstBlock		      "Integral"
+	      DstPort		      1
+	    }
+	    Branch {
+	      Points		      [0, -50]
+	      DstBlock		      "Proportional"
+	      DstPort		      1
+	    }
+	  }
+	}
+	Line {
+	  SrcBlock		  "Derivative"
+	  SrcPort		  1
+	  Points		  [20, 0; 0, -55]
+	  DstBlock		  "Sum"
+	  DstPort		  3
+	}
+	Line {
+	  SrcBlock		  "Integral"
+	  SrcPort		  1
+	  DstBlock		  "Sum"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Proportional"
+	  SrcPort		  1
+	  Points		  [65, 0; 0, 40]
+	  DstBlock		  "Sum"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "PID 2"
+      Ports		      [1, 1, 0, 0, 0]
+      Position		      [455, 137, 490, 163]
+      BackgroundColor	      lightBlue
+      ShowPortLabels	      off
+      MaskType		      "PID Controller"
+      MaskDescription	      "Enter expressions for proportional, integral, "
+			      "and derivative terms.\nP+I/s+Ds"
+      MaskHelp		      "This block implements a PID controller where "
+			      "parameters are entered for the Proportional, "
+			      "Integral and Derivative terms. Unmask this "
+			      "block to see how it works. The derivative "
+			      "term is implemented using a true derivative "
+			      "block."
+      MaskPromptString	      "Proportional:|Integral|Derivative:"
+      MaskStyleString	      "edit,edit,edit"
+      MaskVariables	      "P=@1;I=@2;D=@3;"
+      MaskDisplay	      "disp('PID')"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      none
+      MaskIconUnits	      autoscale
+      MaskValueString	      "200|0|0"
+      System {
+	Name			"PID 2"
+	Location		[0, 0, 362, 244]
+	Open			off
+	ScreenColor		white
+	Block {
+	  BlockType		  Inport
+	  Name			  "In_1"
+	  Position		  [25, 65, 45, 85]
+	  Port			  "1"
+	  PortWidth		  "-1"
+	  SampleTime		  "-1"
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "D"
+	  Position		  [95, 129, 115, 151]
+	  Gain			  "D"
+	}
+	Block {
+	  BlockType		  Derivative
+	  Name			  "Derivative"
+	  Position		  [150, 128, 190, 152]
+	}
+	Block {
+	  BlockType		  TransferFcn
+	  Name			  "Integral"
+	  Position		  [110, 57, 145, 93]
+	  Numerator		  "[I]"
+	  Denominator		  "[1 0]"
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "Proportional"
+	  Position		  [120, 13, 140, 37]
+	  Gain			  "P"
+	}
+	Block {
+	  BlockType		  Sum
+	  Name			  "Sum"
+	  Ports			  [3, 1, 0, 0, 0]
+	  Position		  [245, 57, 265, 93]
+	  Inputs		  "+++"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out_1"
+	  Position		  [290, 65, 310, 85]
+	  Port			  "1"
+	  OutputWhenDisabled	  held
+	  InitialOutput		  "0"
+	}
+	Line {
+	  SrcBlock		  "D"
+	  SrcPort		  1
+	  DstBlock		  "Derivative"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Sum"
+	  SrcPort		  1
+	  DstBlock		  "Out_1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "In_1"
+	  SrcPort		  1
+	  Points		  [15, 0]
+	  Branch {
+	    Points		    [0, 65]
+	    DstBlock		    "D"
+	    DstPort		    1
+	  }
+	  Branch {
+	    Points		    [15, 0]
+	    Branch {
+	      DstBlock		      "Integral"
+	      DstPort		      1
+	    }
+	    Branch {
+	      Points		      [0, -50]
+	      DstBlock		      "Proportional"
+	      DstPort		      1
+	    }
+	  }
+	}
+	Line {
+	  SrcBlock		  "Derivative"
+	  SrcPort		  1
+	  Points		  [20, 0; 0, -55]
+	  DstBlock		  "Sum"
+	  DstPort		  3
+	}
+	Line {
+	  SrcBlock		  "Integral"
+	  SrcPort		  1
+	  DstBlock		  "Sum"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Proportional"
+	  SrcPort		  1
+	  Points		  [65, 0; 0, 40]
+	  DstBlock		  "Sum"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "PID 3"
+      Ports		      [1, 1, 0, 0, 0]
+      Position		      [450, 193, 485, 217]
+      BackgroundColor	      lightBlue
+      ShowPortLabels	      off
+      MaskType		      "PID Controller"
+      MaskDescription	      "Enter expressions for proportional, integral, "
+			      "and derivative terms.\nP+I/s+Ds"
+      MaskHelp		      "This block implements a PID controller where "
+			      "parameters are entered for the Proportional, "
+			      "Integral and Derivative terms. Unmask this "
+			      "block to see how it works. The derivative "
+			      "term is implemented using a true derivative "
+			      "block."
+      MaskPromptString	      "Proportional:|Integral|Derivative:"
+      MaskStyleString	      "edit,edit,edit"
+      MaskVariables	      "P=@1;I=@2;D=@3;"
+      MaskDisplay	      "disp('PID')"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      none
+      MaskIconUnits	      autoscale
+      MaskValueString	      "200|0|0"
+      System {
+	Name			"PID 3"
+	Location		[0, 0, 362, 244]
+	Open			off
+	ScreenColor		white
+	Block {
+	  BlockType		  Inport
+	  Name			  "In_1"
+	  Position		  [25, 65, 45, 85]
+	  Port			  "1"
+	  PortWidth		  "-1"
+	  SampleTime		  "-1"
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "D"
+	  Position		  [95, 129, 115, 151]
+	  Gain			  "D"
+	}
+	Block {
+	  BlockType		  Derivative
+	  Name			  "Derivative"
+	  Position		  [150, 128, 190, 152]
+	}
+	Block {
+	  BlockType		  TransferFcn
+	  Name			  "Integral"
+	  Position		  [110, 57, 145, 93]
+	  Numerator		  "[I]"
+	  Denominator		  "[1 0]"
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "Proportional"
+	  Position		  [120, 13, 140, 37]
+	  Gain			  "P"
+	}
+	Block {
+	  BlockType		  Sum
+	  Name			  "Sum"
+	  Ports			  [3, 1, 0, 0, 0]
+	  Position		  [245, 57, 265, 93]
+	  Inputs		  "+++"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out_1"
+	  Position		  [290, 65, 310, 85]
+	  Port			  "1"
+	  OutputWhenDisabled	  held
+	  InitialOutput		  "0"
+	}
+	Line {
+	  SrcBlock		  "D"
+	  SrcPort		  1
+	  DstBlock		  "Derivative"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Sum"
+	  SrcPort		  1
+	  DstBlock		  "Out_1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "In_1"
+	  SrcPort		  1
+	  Points		  [15, 0]
+	  Branch {
+	    Points		    [0, 65]
+	    DstBlock		    "D"
+	    DstPort		    1
+	  }
+	  Branch {
+	    Points		    [15, 0]
+	    Branch {
+	      DstBlock		      "Integral"
+	      DstPort		      1
+	    }
+	    Branch {
+	      Points		      [0, -50]
+	      DstBlock		      "Proportional"
+	      DstPort		      1
+	    }
+	  }
+	}
+	Line {
+	  SrcBlock		  "Derivative"
+	  SrcPort		  1
+	  Points		  [20, 0; 0, -55]
+	  DstBlock		  "Sum"
+	  DstPort		  3
+	}
+	Line {
+	  SrcBlock		  "Integral"
+	  SrcPort		  1
+	  DstBlock		  "Sum"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Proportional"
+	  SrcPort		  1
+	  Points		  [65, 0; 0, 40]
+	  DstBlock		  "Sum"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "PID 4"
+      Ports		      [1, 1, 0, 0, 0]
+      Position		      [450, 249, 485, 271]
+      BackgroundColor	      lightBlue
+      ShowPortLabels	      off
+      MaskType		      "PID Controller"
+      MaskDescription	      "Enter expressions for proportional, integral, "
+			      "and derivative terms.\nP+I/s+Ds"
+      MaskHelp		      "This block implements a PID controller where "
+			      "parameters are entered for the Proportional, "
+			      "Integral and Derivative terms. Unmask this "
+			      "block to see how it works. The derivative "
+			      "term is implemented using a true derivative "
+			      "block."
+      MaskPromptString	      "Proportional:|Integral|Derivative:"
+      MaskStyleString	      "edit,edit,edit"
+      MaskVariables	      "P=@1;I=@2;D=@3;"
+      MaskDisplay	      "disp('PID')"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      none
+      MaskIconUnits	      autoscale
+      MaskValueString	      "100|0|0"
+      System {
+	Name			"PID 4"
+	Location		[0, 0, 362, 244]
+	Open			off
+	ScreenColor		white
+	Block {
+	  BlockType		  Inport
+	  Name			  "In_1"
+	  Position		  [25, 65, 45, 85]
+	  Port			  "1"
+	  PortWidth		  "-1"
+	  SampleTime		  "-1"
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "D"
+	  Position		  [95, 129, 115, 151]
+	  Gain			  "D"
+	}
+	Block {
+	  BlockType		  Derivative
+	  Name			  "Derivative"
+	  Position		  [150, 128, 190, 152]
+	}
+	Block {
+	  BlockType		  TransferFcn
+	  Name			  "Integral"
+	  Position		  [110, 57, 145, 93]
+	  Numerator		  "[I]"
+	  Denominator		  "[1 0]"
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "Proportional"
+	  Position		  [120, 13, 140, 37]
+	  Gain			  "P"
+	}
+	Block {
+	  BlockType		  Sum
+	  Name			  "Sum"
+	  Ports			  [3, 1, 0, 0, 0]
+	  Position		  [245, 57, 265, 93]
+	  Inputs		  "+++"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out_1"
+	  Position		  [290, 65, 310, 85]
+	  Port			  "1"
+	  OutputWhenDisabled	  held
+	  InitialOutput		  "0"
+	}
+	Line {
+	  SrcBlock		  "Proportional"
+	  SrcPort		  1
+	  Points		  [65, 0; 0, 40]
+	  DstBlock		  "Sum"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Integral"
+	  SrcPort		  1
+	  DstBlock		  "Sum"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Derivative"
+	  SrcPort		  1
+	  Points		  [20, 0; 0, -55]
+	  DstBlock		  "Sum"
+	  DstPort		  3
+	}
+	Line {
+	  SrcBlock		  "In_1"
+	  SrcPort		  1
+	  Points		  [15, 0]
+	  Branch {
+	    Points		    [15, 0]
+	    Branch {
+	      Points		      [0, -50]
+	      DstBlock		      "Proportional"
+	      DstPort		      1
+	    }
+	    Branch {
+	      DstBlock		      "Integral"
+	      DstPort		      1
+	    }
+	  }
+	  Branch {
+	    Points		    [0, 65]
+	    DstBlock		    "D"
+	    DstPort		    1
+	  }
+	}
+	Line {
+	  SrcBlock		  "Sum"
+	  SrcPort		  1
+	  DstBlock		  "Out_1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "D"
+	  SrcPort		  1
+	  DstBlock		  "Derivative"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "PID 5"
+      Ports		      [1, 1, 0, 0, 0]
+      Position		      [450, 299, 485, 321]
+      BackgroundColor	      lightBlue
+      ShowPortLabels	      off
+      MaskType		      "PID Controller"
+      MaskDescription	      "Enter expressions for proportional, integral, "
+			      "and derivative terms.\nP+I/s+Ds"
+      MaskHelp		      "This block implements a PID controller where "
+			      "parameters are entered for the Proportional, "
+			      "Integral and Derivative terms. Unmask this "
+			      "block to see how it works. The derivative "
+			      "term is implemented using a true derivative "
+			      "block."
+      MaskPromptString	      "Proportional:|Integral|Derivative:"
+      MaskStyleString	      "edit,edit,edit"
+      MaskVariables	      "P=@1;I=@2;D=@3;"
+      MaskDisplay	      "disp('PID')"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      none
+      MaskIconUnits	      autoscale
+      MaskValueString	      "100|0|0"
+      System {
+	Name			"PID 5"
+	Location		[0, 0, 362, 244]
+	Open			off
+	ScreenColor		white
+	Block {
+	  BlockType		  Inport
+	  Name			  "In_1"
+	  Position		  [25, 65, 45, 85]
+	  Port			  "1"
+	  PortWidth		  "-1"
+	  SampleTime		  "-1"
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "D"
+	  Position		  [95, 129, 115, 151]
+	  Gain			  "D"
+	}
+	Block {
+	  BlockType		  Derivative
+	  Name			  "Derivative"
+	  Position		  [150, 128, 190, 152]
+	}
+	Block {
+	  BlockType		  TransferFcn
+	  Name			  "Integral"
+	  Position		  [110, 57, 145, 93]
+	  Numerator		  "[I]"
+	  Denominator		  "[1 0]"
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "Proportional"
+	  Position		  [120, 13, 140, 37]
+	  Gain			  "P"
+	}
+	Block {
+	  BlockType		  Sum
+	  Name			  "Sum"
+	  Ports			  [3, 1, 0, 0, 0]
+	  Position		  [245, 57, 265, 93]
+	  Inputs		  "+++"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out_1"
+	  Position		  [290, 65, 310, 85]
+	  Port			  "1"
+	  OutputWhenDisabled	  held
+	  InitialOutput		  "0"
+	}
+	Line {
+	  SrcBlock		  "D"
+	  SrcPort		  1
+	  DstBlock		  "Derivative"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Sum"
+	  SrcPort		  1
+	  DstBlock		  "Out_1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "In_1"
+	  SrcPort		  1
+	  Points		  [15, 0]
+	  Branch {
+	    Points		    [0, 65]
+	    DstBlock		    "D"
+	    DstPort		    1
+	  }
+	  Branch {
+	    Points		    [15, 0]
+	    Branch {
+	      DstBlock		      "Integral"
+	      DstPort		      1
+	    }
+	    Branch {
+	      Points		      [0, -50]
+	      DstBlock		      "Proportional"
+	      DstPort		      1
+	    }
+	  }
+	}
+	Line {
+	  SrcBlock		  "Derivative"
+	  SrcPort		  1
+	  Points		  [20, 0; 0, -55]
+	  DstBlock		  "Sum"
+	  DstPort		  3
+	}
+	Line {
+	  SrcBlock		  "Integral"
+	  SrcPort		  1
+	  DstBlock		  "Sum"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Proportional"
+	  SrcPort		  1
+	  Points		  [65, 0; 0, 40]
+	  DstBlock		  "Sum"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "PID 6"
+      Ports		      [1, 1, 0, 0, 0]
+      Position		      [450, 358, 485, 382]
+      BackgroundColor	      lightBlue
+      ShowPortLabels	      off
+      MaskType		      "PID Controller"
+      MaskDescription	      "Enter expressions for proportional, integral, "
+			      "and derivative terms.\nP+I/s+Ds"
+      MaskHelp		      "This block implements a PID controller where "
+			      "parameters are entered for the Proportional, "
+			      "Integral and Derivative terms. Unmask this "
+			      "block to see how it works. The derivative "
+			      "term is implemented using a true derivative "
+			      "block."
+      MaskPromptString	      "Proportional:|Integral|Derivative:"
+      MaskStyleString	      "edit,edit,edit"
+      MaskVariables	      "P=@1;I=@2;D=@3;"
+      MaskDisplay	      "disp('PID')"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      none
+      MaskIconUnits	      autoscale
+      MaskValueString	      "100|0|0"
+      System {
+	Name			"PID 6"
+	Location		[0, 0, 362, 244]
+	Open			off
+	ScreenColor		white
+	Block {
+	  BlockType		  Inport
+	  Name			  "In_1"
+	  Position		  [25, 65, 45, 85]
+	  Port			  "1"
+	  PortWidth		  "-1"
+	  SampleTime		  "-1"
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "D"
+	  Position		  [95, 129, 115, 151]
+	  Gain			  "D"
+	}
+	Block {
+	  BlockType		  Derivative
+	  Name			  "Derivative"
+	  Position		  [150, 128, 190, 152]
+	}
+	Block {
+	  BlockType		  TransferFcn
+	  Name			  "Integral"
+	  Position		  [110, 57, 145, 93]
+	  Numerator		  "[I]"
+	  Denominator		  "[1 0]"
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "Proportional"
+	  Position		  [120, 13, 140, 37]
+	  Gain			  "P"
+	}
+	Block {
+	  BlockType		  Sum
+	  Name			  "Sum"
+	  Ports			  [3, 1, 0, 0, 0]
+	  Position		  [245, 57, 265, 93]
+	  Inputs		  "+++"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out_1"
+	  Position		  [290, 65, 310, 85]
+	  Port			  "1"
+	  OutputWhenDisabled	  held
+	  InitialOutput		  "0"
+	}
+	Line {
+	  SrcBlock		  "Proportional"
+	  SrcPort		  1
+	  Points		  [65, 0; 0, 40]
+	  DstBlock		  "Sum"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Integral"
+	  SrcPort		  1
+	  DstBlock		  "Sum"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Derivative"
+	  SrcPort		  1
+	  Points		  [20, 0; 0, -55]
+	  DstBlock		  "Sum"
+	  DstPort		  3
+	}
+	Line {
+	  SrcBlock		  "In_1"
+	  SrcPort		  1
+	  Points		  [15, 0]
+	  Branch {
+	    Points		    [15, 0]
+	    Branch {
+	      Points		      [0, -50]
+	      DstBlock		      "Proportional"
+	      DstPort		      1
+	    }
+	    Branch {
+	      DstBlock		      "Integral"
+	      DstPort		      1
+	    }
+	  }
+	  Branch {
+	    Points		    [0, 65]
+	    DstBlock		    "D"
+	    DstPort		    1
+	  }
+	}
+	Line {
+	  SrcBlock		  "Sum"
+	  SrcPort		  1
+	  DstBlock		  "Out_1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "D"
+	  SrcPort		  1
+	  DstBlock		  "Derivative"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      Mux
+      Name		      "Pares"
+      Ports		      [6, 1, 0, 0, 0]
+      Position		      [785, 190, 825, 250]
+      Inputs		      "6"
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Planificación de \ntrayectorias"
+      Ports		      [2, 1, 0, 0, 0]
+      Position		      [180, 181, 245, 234]
+      ShowPortLabels	      on
+      MaskType		      "Planificación de trayectorias"
+      MaskDisplay	      "disp('Planificación')"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      none
+      MaskIconUnits	      autoscale
+      System {
+	Name			"Planificación de \ntrayectorias"
+	Location		[238, 292, 795, 618]
+	Open			off
+	ScreenColor		white
+	Block {
+	  BlockType		  Inport
+	  Name			  "Posición Inicial"
+	  Position		  [125, 125, 145, 145]
+	  Port			  "1"
+	  PortWidth		  "-1"
+	  SampleTime		  "-1"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "Posición Final"
+	  Position		  [125, 175, 145, 195]
+	  Port			  "2"
+	  PortWidth		  "-1"
+	  SampleTime		  "-1"
+	}
+	Block {
+	  BlockType		  Clock
+	  Name			  "Clock"
+	  Position		  [125, 80, 145, 100]
+	  Location		  [325, 209, 451, 306]
+	}
+	Block {
+	  BlockType		  Mux
+	  Name			  "Pares"
+	  Ports			  [3, 1, 0, 0, 0]
+	  Position		  [215, 106, 255, 164]
+	  ShowName		  off
+	  Inputs		  "3"
+	}
+	Block {
+	  BlockType		  MATLABFcn
+	  Name			  "Planificación de \ntrayectorias"
+	  Position		  [300, 118, 360, 152]
+	  MATLABFcn		  "planifica6"
+	  OutputWidth		  "6"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Posiciones\nArticulares"
+	  Position		  [420, 128, 450, 142]
+	  Port			  "1"
+	  OutputWhenDisabled	  held
+	  InitialOutput		  "0"
+	}
+	Line {
+	  SrcBlock		  "Planificación de \ntrayectorias"
+	  SrcPort		  1
+	  DstBlock		  "Posiciones\nArticulares"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Pares"
+	  SrcPort		  1
+	  DstBlock		  "Planificación de \ntrayectorias"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Posición Final"
+	  SrcPort		  1
+	  Points		  [50, 0]
+	  DstBlock		  "Pares"
+	  DstPort		  3
+	}
+	Line {
+	  SrcBlock		  "Posición Inicial"
+	  SrcPort		  1
+	  DstBlock		  "Pares"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Clock"
+	  SrcPort		  1
+	  Points		  [50, 0]
+	  DstBlock		  "Pares"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      Constant
+      Name		      "Posición Final"
+      Position		      [55, 219, 125, 241]
+      BackgroundColor	      lightBlue
+      Value		      "[-0.4 0.2 0.3]"
+    }
+    Block {
+      BlockType		      Constant
+      Name		      "Posición Inicial"
+      Position		      [55, 169, 125, 191]
+      BackgroundColor	      lightBlue
+      Value		      "[0 0.1 0.4]"
+    }
+    Block {
+      BlockType		      MATLABFcn
+      Name		      "Robot 6GDL"
+      Position		      [955, 213, 1015, 247]
+      MATLABFcn		      "dindir6gdl"
+      OutputWidth	      "6"
+    }
+    Block {
+      BlockType		      Saturate
+      Name		      "Saturation 1"
+      Position		      [515, 80, 545, 110]
+      UpperLimit	      "10"
+      LowerLimit	      "-10"
+    }
+    Block {
+      BlockType		      Saturate
+      Name		      "Saturation 2"
+      Position		      [515, 135, 545, 165]
+      UpperLimit	      "10"
+      LowerLimit	      "-10"
+    }
+    Block {
+      BlockType		      Saturate
+      Name		      "Saturation 3"
+      Position		      [510, 190, 540, 220]
+      UpperLimit	      "10"
+      LowerLimit	      "-10"
+    }
+    Block {
+      BlockType		      Saturate
+      Name		      "Saturation 4"
+      Position		      [515, 245, 545, 275]
+      UpperLimit	      "10"
+      LowerLimit	      "-10"
+    }
+    Block {
+      BlockType		      Saturate
+      Name		      "Saturation 5"
+      Position		      [510, 295, 540, 325]
+      UpperLimit	      "10"
+      LowerLimit	      "-10"
+    }
+    Block {
+      BlockType		      Saturate
+      Name		      "Saturation 6"
+      Position		      [510, 355, 540, 385]
+      UpperLimit	      "10"
+      LowerLimit	      "-10"
+    }
+    Block {
+      BlockType		      Sum
+      Name		      "Sum1"
+      Ports		      [2, 1, 0, 0, 0]
+      Position		      [410, 84, 430, 106]
+      Inputs		      "+-"
+    }
+    Block {
+      BlockType		      Sum
+      Name		      "Sum2"
+      Ports		      [2, 1, 0, 0, 0]
+      Position		      [410, 139, 430, 161]
+      Inputs		      "+-"
+    }
+    Block {
+      BlockType		      Sum
+      Name		      "Sum3"
+      Ports		      [2, 1, 0, 0, 0]
+      Position		      [405, 194, 425, 216]
+      Inputs		      "+-"
+    }
+    Block {
+      BlockType		      Sum
+      Name		      "Sum4"
+      Ports		      [2, 1, 0, 0, 0]
+      Position		      [405, 249, 425, 271]
+      Inputs		      "+-"
+    }
+    Block {
+      BlockType		      Sum
+      Name		      "Sum5"
+      Ports		      [2, 1, 0, 0, 0]
+      Position		      [405, 299, 425, 321]
+      Inputs		      "+-"
+    }
+    Block {
+      BlockType		      Sum
+      Name		      "Sum6"
+      Ports		      [2, 1, 0, 0, 0]
+      Position		      [405, 359, 425, 381]
+      Inputs		      "+-"
+    }
+    Block {
+      BlockType		      ToWorkspace
+      Name		      "To Workspace"
+      Position		      [280, 510, 340, 540]
+      Orientation	      left
+      BackgroundColor	      yellow
+      NamePlacement	      alternate
+      VariableName	      "mat_q"
+      Buffer		      "inf"
+      Decimation	      "1"
+      SampleTime	      "-1"
+    }
+    Line {
+      SrcBlock		      "Demux3"
+      SrcPort		      4
+      Points		      [-20, 0; 0, -215]
+      DstBlock		      "Sum4"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "Demux2"
+      SrcPort		      4
+      Points		      [30, 0; 0, 40]
+      DstBlock		      "Sum4"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Robot 6GDL"
+      SrcPort		      1
+      DstBlock		      "Integrator"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Integrator"
+      SrcPort		      1
+      Points		      [25, 0; 0, 220]
+      Branch {
+	Points			[-250, 0]
+	Branch {
+	  Points		  [0, -210]
+	  DstBlock		  "Mux"
+	  DstPort		  3
+	}
+	Branch {
+	  DstBlock		  "Demux1"
+	  DstPort		  1
+	}
+      }
+      Branch {
+	Points			[0, 70]
+	DstBlock		"Integrator1"
+	DstPort			1
+      }
+    }
+    Line {
+      SrcBlock		      "Demux3"
+      SrcPort		      3
+      Points		      [-25, 0; 0, -260]
+      DstBlock		      "Sum3"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "Demux3"
+      SrcPort		      2
+      Points		      [-30, 0; 0, -305]
+      DstBlock		      "Sum2"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "Demux2"
+      SrcPort		      3
+      Points		      [45, 0; 0, -5]
+      DstBlock		      "Sum3"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Demux2"
+      SrcPort		      2
+      Points		      [50, 0; 0, -50]
+      DstBlock		      "Sum2"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Pares"
+      SrcPort		      1
+      DstBlock		      "Mux"
+      DstPort		      1
+    }
+    Line {
+      Labels		      [1, 0]
+      SrcBlock		      "Mux"
+      SrcPort		      1
+      DstBlock		      "Robot 6GDL"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Motor 2"
+      SrcPort		      1
+      Points		      [15, 0; 0, 45]
+      DstBlock		      "Pares"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "Integrator1"
+      SrcPort		      1
+      Points		      [-125, 0]
+      Branch {
+	Points			[0, -295]
+	DstBlock		"Mux"
+	DstPort			2
+      }
+      Branch {
+	Points			[-365, 0]
+	Branch {
+	  Points		  [0, -50]
+	  DstBlock		  "Demux3"
+	  DstPort		  1
+	}
+	Branch {
+	  Points		  [-50, 0]
+	  Branch {
+	    DstBlock		    "To Workspace"
+	    DstPort		    1
+	  }
+	  Branch {
+	    Points		    [0, 75]
+	    DstBlock		    "Graficas"
+	    DstPort		    1
+	  }
+	}
+      }
+    }
+    Line {
+      SrcBlock		      "Posición Final"
+      SrcPort		      1
+      Points		      [35, 0]
+      DstBlock		      "Planificación de \ntrayectorias"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "Posición Inicial"
+      SrcPort		      1
+      Points		      [15, 0]
+      Branch {
+	Points			[20, 0]
+	DstBlock		"Planificación de \ntrayectorias"
+	DstPort			1
+      }
+      Branch {
+	DstBlock		"Cinemática\nInversa"
+	DstPort			1
+      }
+    }
+    Line {
+      SrcBlock		      "Cinemática\nInversa"
+      SrcPort		      1
+      Points		      [0, 245; 900, 0; 0, -110]
+      DstBlock		      "Integrator1"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "Planificación de \ntrayectorias"
+      SrcPort		      1
+      DstBlock		      "Demux2"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Saturation 1"
+      SrcPort		      1
+      DstBlock		      "Amplificador 1"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "PID 1"
+      SrcPort		      1
+      DstBlock		      "Saturation 1"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Sum1"
+      SrcPort		      1
+      DstBlock		      "PID 1"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Demux3"
+      SrcPort		      1
+      Points		      [-35, 0; 0, -350]
+      DstBlock		      "Sum1"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "Demux2"
+      SrcPort		      1
+      Points		      [30, 0; 0, -95]
+      DstBlock		      "Sum1"
+      DstPort		      1
+    }
+    Line {
+      Labels		      [1, 0]
+      SrcBlock		      "Amplificador 1"
+      SrcPort		      1
+      DstBlock		      "Motor 1"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Motor 1"
+      SrcPort		      1
+      Points		      [40, 0]
+      DstBlock		      "Pares"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Saturation 2"
+      SrcPort		      1
+      DstBlock		      "Amplificador 2"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "PID 2"
+      SrcPort		      1
+      DstBlock		      "Saturation 2"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Sum2"
+      SrcPort		      1
+      DstBlock		      "PID 2"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Amplificador 2"
+      SrcPort		      1
+      DstBlock		      "Motor 2"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Saturation 3"
+      SrcPort		      1
+      DstBlock		      "Amplificador 3"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "PID 3"
+      SrcPort		      1
+      DstBlock		      "Saturation 3"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Sum3"
+      SrcPort		      1
+      DstBlock		      "PID 3"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Motor 3"
+      SrcPort		      1
+      DstBlock		      "Pares"
+      DstPort		      3
+    }
+    Line {
+      SrcBlock		      "Amplificador 3"
+      SrcPort		      1
+      DstBlock		      "Motor 3"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Motor 4"
+      SrcPort		      1
+      Points		      [25, 0; 0, -45]
+      DstBlock		      "Pares"
+      DstPort		      4
+    }
+    Line {
+      SrcBlock		      "Saturation 4"
+      SrcPort		      1
+      DstBlock		      "Amplificador 4"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "PID 4"
+      SrcPort		      1
+      DstBlock		      "Saturation 4"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Sum4"
+      SrcPort		      1
+      DstBlock		      "PID 4"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Amplificador 4"
+      SrcPort		      1
+      DstBlock		      "Motor 4"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Saturation 5"
+      SrcPort		      1
+      DstBlock		      "Amplificador 5"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "PID 5"
+      SrcPort		      1
+      DstBlock		      "Saturation 5"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Sum5"
+      SrcPort		      1
+      DstBlock		      "PID 5"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Amplificador 5"
+      SrcPort		      1
+      DstBlock		      "Motor 5"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Saturation 6"
+      SrcPort		      1
+      DstBlock		      "Amplificador 6"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "PID 6"
+      SrcPort		      1
+      DstBlock		      "Saturation 6"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Sum6"
+      SrcPort		      1
+      DstBlock		      "PID 6"
+      DstPort		      1
+    }
+    Line {
+      Labels		      [1, 0]
+      SrcBlock		      "Amplificador 6"
+      SrcPort		      1
+      DstBlock		      "Motor 6"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Demux1"
+      SrcPort		      4
+      Points		      [-25, 0; 0, -180]
+      DstBlock		      "Motor 4"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "Demux1"
+      SrcPort		      3
+      Points		      [-30, 0; 0, -225]
+      DstBlock		      "Motor 3"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "Demux1"
+      SrcPort		      2
+      Points		      [-35, 0; 0, -270]
+      DstBlock		      "Motor 2"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "Demux1"
+      SrcPort		      1
+      Points		      [-40, 0; 0, -315]
+      DstBlock		      "Motor 1"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "Demux3"
+      SrcPort		      5
+      Points		      [-15, 0; 0, -175]
+      DstBlock		      "Sum5"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "Demux3"
+      SrcPort		      6
+      Points		      [-5, 0; 0, -125]
+      DstBlock		      "Sum6"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "Demux2"
+      SrcPort		      5
+      Points		      [35, 0; 0, 80]
+      DstBlock		      "Sum5"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Demux2"
+      SrcPort		      6
+      Points		      [45, 0; 0, 130]
+      DstBlock		      "Sum6"
+      DstPort		      1
+    }
+    Line {
+      Labels		      [1, 0]
+      SrcBlock		      "Motor 5"
+      SrcPort		      1
+      Points		      [30, 0; 0, -85]
+      DstBlock		      "Pares"
+      DstPort		      5
+    }
+    Line {
+      SrcBlock		      "Motor 6"
+      SrcPort		      1
+      Points		      [40, 0; 0, -135]
+      DstBlock		      "Pares"
+      DstPort		      6
+    }
+    Line {
+      SrcBlock		      "Demux1"
+      SrcPort		      5
+      Points		      [-20, 0; 0, -140]
+      DstBlock		      "Motor 5"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "Demux1"
+      SrcPort		      6
+      Points		      [-15, 0]
+      DstBlock		      "Motor 6"
+      DstPort		      2
+    }
+    Annotation {
+      Position		      [515, 35]
+      FontSize		      14
+      FontWeight	      bold
+      Text		      "SIMULACIÓN DE LA TRAYECTORIA EN LÍNEA RECTA "
+			      "DEL ROBOT DE 6GDL"
+      DropShadow	      on
+    }
+    Annotation {
+      Position		      [710, 534]
+      Text		      "Posiciones"
+    }
+    Annotation {
+      Position		      [1075, 355]
+      Text		      "Velocidades"
+    }
+  }
+}
